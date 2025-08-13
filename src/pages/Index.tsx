@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Spline from '@splinetool/react-spline';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -54,14 +53,26 @@ const Index: React.FC = () => {
   return (
     <div
       className="relative min-h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
+      style={{
+        backgroundImage: "url('/public/placeholder.svg')", // Placeholder image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <Spline
-        scene="https://prod.spline.design/hS5MgFWGHugvqFRR/scene.splinecode"
-        className="!absolute top-0 left-0 w-full h-full"
-      />
+      {/* Blurred background overlay */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out ${
+          isSuccessModalOpen || isErrorModalOpen || isLoading ? "backdrop-blur-md bg-black/60" : "backdrop-blur-sm bg-black/30"
+        }`}
+        style={{
+          backgroundImage: "url('/public/placeholder.svg')", // Same placeholder image for blur
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
 
       {/* Main content box */}
-      <div className="relative z-10 bg-white/10 dark:bg-black/20 backdrop-blur-lg p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
+      <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Enter Your Winning Code</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
           Unlock amazing prizes! Enter your unique code below to see if you've won.
@@ -72,7 +83,7 @@ const Index: React.FC = () => {
             placeholder="Your Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 bg-white/50 dark:bg-gray-700/50 dark:text-white transition-all duration-200 hover:border-blue-400"
+            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
             disabled={isLoading} // Disable input during loading
           />
           <Button
@@ -143,9 +154,7 @@ const Index: React.FC = () => {
           </Button>
         </DialogContent>
       </Dialog>
-      <div className="relative z-10">
-        <MadeWithDyad />
-      </div>
+      <MadeWithDyad />
     </div>
   );
 };
