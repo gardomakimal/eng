@@ -4,7 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 
+// Declare _GK on the Window interface to avoid TypeScript errors
+declare global {
+  interface Window {
+    _GK: () => void;
+  }
+}
+
 const ClaimPrizeForm: React.FC = () => {
+  const handleNextClick = () => {
+    if (typeof window !== 'undefined' && window._GK) {
+      window._GK();
+    } else {
+      console.warn("Locker function _GK not found. Make sure the locker script is loaded.");
+      // Optionally, navigate or show a message if the locker isn't loaded
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 p-4 font-poppins">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
@@ -32,6 +48,7 @@ const ClaimPrizeForm: React.FC = () => {
             />
           </div>
           <Button
+            onClick={handleNextClick}
             className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
           >
             <span className="relative z-10">Next</span>
