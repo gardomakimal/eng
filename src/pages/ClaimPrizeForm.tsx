@@ -35,7 +35,7 @@ const ClaimPrizeForm: React.FC = () => {
               id="name"
               type="text"
               placeholder="Your Name"
-              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
             />
           </div>
           <div>
@@ -44,7 +44,7 @@ const ClaimPrizeForm: React.FC = () => {
               id="email"
               type="email"
               placeholder="Your Email"
-              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+              className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
             />
           </div>
           <Button

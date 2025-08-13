@@ -68,7 +68,7 @@ const Index: React.FC = () => {
             placeholder="Your Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
             disabled={isLoading} // Disable input during loading
           />
           <Button
