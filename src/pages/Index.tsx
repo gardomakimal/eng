@@ -6,17 +6,17 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react"; // Import Loader2 icon
 
-// Define prize data with codes, names, and placeholder images
+// Define prize data with codes, names, and image paths
 const prizeData: { [key: string]: { name: string; image: string } } = {
-  "Win4510": { name: "iPhone 16 Pro / Pro Max", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4520": { name: "Nintendo Switch 2", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4530": { name: "PlayStation 5 Slim", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4540": { name: "Robux (Roblox)", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4550": { name: "V-Bucks (Fortnite)", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4560": { name: "GTA Shark Cards", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4570": { name: "Amazon Gift Card", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4580": { name: "Google Play", image: "/public/placeholder.svg" }, // Replace with actual image path
-  "Win4590": { name: "Apple Store Credit", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4510": { name: "iPhone 16 Pro / Pro Max", image: "/public/iPhone.png" },
+  "Win4520": { name: "Nintendo Switch 2", image: "/public/Nintendo.png" },
+  "Win4530": { name: "PlayStation 5 Slim", image: "/public/PlayStation.png" },
+  "Win4540": { name: "Robux (Roblox)", image: "/public/Robux.png" },
+  "Win4550": { name: "V-Bucks (Fortnite)", image: "/public/VBucks.png" },
+  "Win4560": { name: "GTA Shark Cards", image: "/public/GTA.png" },
+  "Win4570": { name: "Amazon Gift Card", image: "/public/Amazon.png" },
+  "Win4580": { name: "Google Play", image: "/public/Google.png" },
+  "Win4590": { name: "Apple Store Credit", image: "/public/Apple.png" },
 };
 
 const Index: React.FC = () => {
