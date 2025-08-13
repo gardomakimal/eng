@@ -1,16 +1,114 @@
-// Update this page (the content is just a fallback if you fail to update the page)
-
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { useNavigate } from "react-router-dom";
 
-const Index = () => {
+const WINNING_CODES = ["Win4567", "Win9560", "Win5520"];
+
+const Index: React.FC = () => {
+  const [code, setCode] = useState<string>("");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleCheckCode = () => {
+    if (WINNING_CODES.includes(code)) {
+      setIsSuccessModalOpen(true);
+      setIsErrorModalOpen(false);
+    } else {
+      setIsErrorModalOpen(true);
+      setIsSuccessModalOpen(false);
+    }
+  };
+
+  const handleClaimPrize = () => {
+    setIsSuccessModalOpen(false);
+    navigate("/claim-prize");
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
+    <div
+      className="relative min-h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
+      style={{
+        backgroundImage: "url('/public/placeholder.svg')", // Placeholder image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Blurred background overlay */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out ${
+          isSuccessModalOpen || isErrorModalOpen ? "backdrop-blur-md bg-black/60" : "backdrop-blur-sm bg-black/30"
+        }`}
+        style={{
+          backgroundImage: "url('/public/placeholder.svg')", // Same placeholder image for blur
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+
+      {/* Main content box */}
+      <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
+        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Enter Your Winning Code</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+          Unlock amazing prizes! Enter your unique code below to see if you've won.
         </p>
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <Input
+            type="text"
+            placeholder="Your Code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          />
+          <Button
+            onClick={handleCheckCode}
+            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Check Code</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
+          </Button>
+        </div>
       </div>
+
+      {/* Success Pop-up */}
+      <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">🎉 Congratulations!</DialogTitle>
+            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+              You've won an amazing prize! Click below to claim it now.
+            </DialogDescription>
+          </DialogHeader>
+          <Button
+            onClick={handleClaimPrize}
+            className="w-full py-3 mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Claim Your Prize</span>
+            <span className="absolute inset-0 bg-gradient-to-r from-green-500 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
+          </Button>
+        </DialogContent>
+      </Dialog>
+
+      {/* Error Pop-up */}
+      <Dialog open={isErrorModalOpen} onOpenChange={setIsErrorModalOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">❌ Invalid Code</DialogTitle>
+            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+              The code you entered is incorrect. Please try again.
+            </DialogDescription>
+          </DialogHeader>
+          <Button
+            onClick={() => setIsErrorModalOpen(false)}
+            className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
+            Close
+          </Button>
+        </DialogContent>
+      </Dialog>
       <MadeWithDyad />
     </div>
   );
