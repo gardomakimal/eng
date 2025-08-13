@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react"; // Import Loader2 icon
 
 const WINNING_CODES = ["Win4567", "Win9560", "Win5520"];
 
@@ -11,16 +12,22 @@ const Index: React.FC = () => {
   const [code, setCode] = useState<string>("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false); // New state for loading
   const navigate = useNavigate();
 
   const handleCheckCode = () => {
-    if (WINNING_CODES.includes(code)) {
-      setIsSuccessModalOpen(true);
-      setIsErrorModalOpen(false);
-    } else {
-      setIsErrorModalOpen(true);
-      setIsSuccessModalOpen(false);
-    }
+    setIsLoading(true); // Start loading animation
+    setIsSuccessModalOpen(false); // Close any open modals
+    setIsErrorModalOpen(false);
+
+    setTimeout(() => {
+      setIsLoading(false); // End loading animation
+      if (WINNING_CODES.includes(code)) {
+        setIsSuccessModalOpen(true);
+      } else {
+        setIsErrorModalOpen(true);
+      }
+    }, 2000); // Simulate 2-second scanning time
   };
 
   const handleClaimPrize = () => {
@@ -40,7 +47,7 @@ const Index: React.FC = () => {
       {/* Blurred background overlay */}
       <div
         className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out ${
-          isSuccessModalOpen || isErrorModalOpen ? "backdrop-blur-md bg-black/60" : "backdrop-blur-sm bg-black/30"
+          isSuccessModalOpen || isErrorModalOpen || isLoading ? "backdrop-blur-md bg-black/60" : "backdrop-blur-sm bg-black/30"
         }`}
         style={{
           backgroundImage: "url('/public/placeholder.svg')", // Same placeholder image for blur
@@ -62,16 +69,33 @@ const Index: React.FC = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            disabled={isLoading} // Disable input during loading
           />
           <Button
             onClick={handleCheckCode}
             className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+            disabled={isLoading} // Disable button during loading
           >
             <span className="relative z-10">Check Code</span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
           </Button>
         </div>
       </div>
+
+      {/* Loading Pop-up */}
+      <Dialog open={isLoading} onOpenChange={setIsLoading}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+              Scanning Code...
+            </DialogTitle>
+            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+              Please wait while we verify your code.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       {/* Success Pop-up */}
       <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
