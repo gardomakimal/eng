@@ -70,7 +70,7 @@ const Index: React.FC = () => {
       <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Enter Your Winning Code</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          Unlock amazing prizes! Enter your unique code below to see if you've won.
+          Enter your unique code below to see if you've won.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <Input
