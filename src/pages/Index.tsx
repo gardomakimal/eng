@@ -124,7 +124,7 @@ const Index: React.FC = () => {
               </div>
             )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              You've won an amazing prize! Click below to claim it now.
+              You've won! Click below to claim it.
             </DialogDescription>
           </DialogHeader>
           <Button
