@@ -116,7 +116,7 @@ const Index: React.FC = () => {
       <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">🎉 Congratulations!</DialogTitle>
+            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">Congratulations! 🎉</DialogTitle>
             {winningPrize && (
               <div className="mt-4 mb-6">
                 <img src={winningPrize.image} alt={winningPrize.name} className="mx-auto h-32 w-32 object-contain mb-4" />
