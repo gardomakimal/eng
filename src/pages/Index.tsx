@@ -6,23 +6,38 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react"; // Import Loader2 icon
 
-const WINNING_CODES = ["Win4567", "Win9560", "Win5520"];
+// Define prize data with codes, names, and placeholder images
+const prizeData: { [key: string]: { name: string; image: string } } = {
+  "Win4510": { name: "iPhone 16 Pro / Pro Max", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4520": { name: "Nintendo Switch 2", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4530": { name: "PlayStation 5 Slim", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4540": { name: "Robux (Roblox)", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4550": { name: "V-Bucks (Fortnite)", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4560": { name: "GTA Shark Cards", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4570": { name: "Amazon Gift Card", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4580": { name: "Google Play", image: "/public/placeholder.svg" }, // Replace with actual image path
+  "Win4590": { name: "Apple Store Credit", image: "/public/placeholder.svg" }, // Replace with actual image path
+};
 
 const Index: React.FC = () => {
   const [code, setCode] = useState<string>("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false); // New state for loading
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [winningPrize, setWinningPrize] = useState<{ name: string; image: string } | null>(null); // New state for winning prize
   const navigate = useNavigate();
 
   const handleCheckCode = () => {
-    setIsLoading(true); // Start loading animation
-    setIsSuccessModalOpen(false); // Close any open modals
+    setIsLoading(true);
+    setIsSuccessModalOpen(false);
     setIsErrorModalOpen(false);
+    setWinningPrize(null); // Reset prize before checking
 
     setTimeout(() => {
-      setIsLoading(false); // End loading animation
-      if (WINNING_CODES.includes(code)) {
+      setIsLoading(false);
+      const prize = prizeData[code]; // Check if the code exists in prizeData
+      if (prize) {
+        setWinningPrize(prize); // Set the winning prize
         setIsSuccessModalOpen(true);
       } else {
         setIsErrorModalOpen(true);
@@ -102,6 +117,12 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">🎉 Congratulations!</DialogTitle>
+            {winningPrize && (
+              <div className="mt-4 mb-6">
+                <img src={winningPrize.image} alt={winningPrize.name} className="mx-auto h-32 w-32 object-contain mb-4" />
+                <p className="text-2xl font-semibold text-gray-800 dark:text-white">{winningPrize.name}</p>
+              </div>
+            )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
               You've won an amazing prize! Click below to claim it now.
             </DialogDescription>
