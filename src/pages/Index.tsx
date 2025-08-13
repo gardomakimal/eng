@@ -54,21 +54,16 @@ const Index: React.FC = () => {
     <div
       className="relative min-h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
       style={{
-        backgroundImage: "url('/public/placeholder.svg')", // Placeholder image
+        backgroundImage: "url('/public/iphonebg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       {/* Blurred background overlay */}
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out ${
-          isSuccessModalOpen || isErrorModalOpen || isLoading ? "backdrop-blur-md bg-black/60" : "backdrop-blur-sm bg-black/30"
+        className={`absolute inset-0 transition-all duration-500 ease-in-out bg-black/50 ${
+          isSuccessModalOpen || isErrorModalOpen || isLoading ? "backdrop-blur-md" : "backdrop-blur-sm"
         }`}
-        style={{
-          backgroundImage: "url('/public/placeholder.svg')", // Same placeholder image for blur
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       ></div>
 
       {/* Main content box */}
