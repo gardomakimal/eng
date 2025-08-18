@@ -179,12 +179,6 @@ const Index: React.FC = () => {
             >
               Yes I Agree
             </Button>
-            <Button
-              onClick={() => setIsAgreementModalOpen(false)}
-              className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-            >
-              No, I quit
-            </Button>
           </div>
         </DialogContent>
       </Dialog>
