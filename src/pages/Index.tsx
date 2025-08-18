@@ -110,11 +110,10 @@ const Index: React.FC = () => {
           />
           <Button
             onClick={handleCheckCode}
-            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group animate-button-pulse disabled:animate-none"
+            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 animate-button-pulse disabled:animate-none"
             disabled={isLoading}
           >
-            <span className="relative z-10">Check Code</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm"></span>
+            <span>Check Code</span>
           </Button>
         </div>
       </div>
