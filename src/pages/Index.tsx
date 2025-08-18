@@ -114,7 +114,7 @@ const Index: React.FC = () => {
             disabled={isLoading}
           >
             <span className="relative z-10">Check Code</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm"></span>
           </Button>
         </div>
       </div>
