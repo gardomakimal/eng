@@ -23,6 +23,7 @@ const Index: React.FC = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isColorModalOpen, setIsColorModalOpen] = useState<boolean>(false);
+  const [isAgreementModalOpen, setIsAgreementModalOpen] = useState<boolean>(false);
   const [winningPrize, setWinningPrize] = useState<{ name: string; image: string } | null>(null);
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
 
@@ -49,6 +50,11 @@ const Index: React.FC = () => {
     setIsColorModalOpen(true);
   };
 
+  const handleAgreement = () => {
+    setIsColorModalOpen(false);
+    setIsAgreementModalOpen(true);
+  };
+
   return (
     <div
       className="relative min-h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
@@ -60,7 +66,7 @@ const Index: React.FC = () => {
     >
       <div
         className={`absolute inset-0 transition-all duration-500 ease-in-out bg-black/50 ${
-          isSuccessModalOpen || isErrorModalOpen || isLoading || isColorModalOpen ? "backdrop-blur-md" : "backdrop-blur-sm"
+          isSuccessModalOpen || isErrorModalOpen || isLoading || isColorModalOpen || isAgreementModalOpen ? "backdrop-blur-md" : "backdrop-blur-sm"
         }`}
       ></div>
 
@@ -136,7 +142,6 @@ const Index: React.FC = () => {
             <img src={selectedColor.image} alt={selectedColor.name} className="h-64 object-contain transition-all duration-300" />
           </div>
           <div className="flex justify-center items-center gap-4 mb-6">
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-200">{selectedColor.name}</p>
             <div className="flex gap-3">
               {colorOptions.map((color) => (
                 <button
@@ -151,11 +156,36 @@ const Index: React.FC = () => {
             </div>
           </div>
           <Button
-            onClick={() => setIsColorModalOpen(false)}
+            onClick={handleAgreement}
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             Next
           </Button>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isAgreementModalOpen} onOpenChange={setIsAgreementModalOpen}>
+        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Final Step</DialogTitle>
+            <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
+              So we can start shipping the iPhone to you, you need to finish the last step. The sponsor of this giveaway (who paid for the iPhones) requests that the winners download and play their game for a short time (15-20 minutes).
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-4 mt-6">
+            <Button
+              onClick={() => setIsAgreementModalOpen(false)}
+              className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              Yes I Agree
+            </Button>
+            <Button
+              onClick={() => setIsAgreementModalOpen(false)}
+              className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              No, I quit
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
 
