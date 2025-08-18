@@ -3,20 +3,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
-import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react"; // Import Loader2 icon
 
 // Define prize data with codes, names, and image paths
 const prizeData: { [key: string]: { name: string; image: string } } = {
   "Win4510": { name: "iPhone 16 Pro / Pro Max", image: "/public/iPhone.png" },
-  "Win4520": { name: "Nintendo Switch 2", image: "/public/Nintendo.png" },
-  "Win4530": { name: "PlayStation 5 Slim", image: "/public/PlayStation.png" },
-  "Win4540": { name: "Robux 100 card", image: "/public/Robux.png" },
-  "Win4550": { name: "10000 V-Bucks", image: "/public/VBucks.png" },
-  "Win4560": { name: "GTA Shark Cards", image: "/public/GTA.png" },
-  "Win4570": { name: "Amazon Gift Card", image: "/public/Amazon.png" },
-  "Win4580": { name: "Google Play", image: "/public/Google.png" },
-  "Win4590": { name: "Apple Store Credit", image: "/public/Apple.png" },
 };
 
 const Index: React.FC = () => {
@@ -25,7 +16,6 @@ const Index: React.FC = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [winningPrize, setWinningPrize] = useState<{ name: string; image: string } | null>(null); // New state for winning prize
-  const navigate = useNavigate();
 
   const handleCheckCode = () => {
     setIsLoading(true);
@@ -43,11 +33,6 @@ const Index: React.FC = () => {
         setIsErrorModalOpen(true);
       }
     }, 2000); // Simulate 2-second scanning time
-  };
-
-  const handleClaimPrize = () => {
-    setIsSuccessModalOpen(false);
-    navigate("/claim-prize");
   };
 
   return (
@@ -119,15 +104,14 @@ const Index: React.FC = () => {
               </div>
             )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              You've won! Click below to claim it.
+              You've won! More details to follow.
             </DialogDescription>
           </DialogHeader>
           <Button
-            onClick={handleClaimPrize}
-            className="w-full py-3 mt-6 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+            onClick={() => setIsSuccessModalOpen(false)}
+            className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            <span className="relative z-10">Claim Your Prize</span>
-            <span className="absolute inset-0 bg-gradient-to-r from-green-500 to-green-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
+            Close
           </Button>
         </DialogContent>
       </Dialog>
