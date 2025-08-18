@@ -69,7 +69,7 @@ const Index: React.FC = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
+      className="relative h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
       style={{
         backgroundImage: "url('/iphonebg.png')",
         backgroundSize: "cover",
