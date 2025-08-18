@@ -7,7 +7,7 @@ import { Loader2 } from "lucide-react"; // Import Loader2 icon
 
 // Define prize data with codes, names, and image paths
 const prizeData: { [key: string]: { name: string; image: string } } = {
-  "Win4510": { name: "iPhone 16 Pro / Pro Max", image: "/public/iPhone.png" },
+  "154590": { name: "iPhone 16 Pro / Pro Max", image: "/public/iPhone.png" },
 };
 
 const Index: React.FC = () => {
