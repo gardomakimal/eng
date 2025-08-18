@@ -14,6 +14,8 @@ import { Loader2 } from "lucide-react";
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
   "154590": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
+  "154570": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
+  "154580": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
 };
 
 // Define color options
