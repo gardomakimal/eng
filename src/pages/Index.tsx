@@ -100,7 +100,7 @@ const Index: React.FC = () => {
             {winningPrize && (
               <div className="mt-4 mb-6">
                 <img src={winningPrize.image} alt={winningPrize.name} className="mx-auto h-32 w-32 object-contain mb-4" />
-                <p className="text-2xl font-semibold text-gray-800 dark:text-white">{winningPrize.name}</p>
+                <p className="text-2xl font-semibold text-gray-800 dark:text-white">You won an iPhone 16</p>
               </div>
             )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
