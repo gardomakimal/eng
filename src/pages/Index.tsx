@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
 
@@ -12,9 +18,9 @@ const prizeData: { [key: string]: { name: string; image: string } } = {
 
 // Define color options
 const colorOptions = [
-  { name: "Black", image: "/black.jpg", colorClass: "bg-zinc-800" },
-  { name: "Green", image: "/green.jpg", colorClass: "bg-teal-500" },
-  { name: "Pink", image: "/pink.jpg", colorClass: "bg-pink-400" },
+  { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
+  { name: "Green", image: "/green.png", colorClass: "bg-teal-500" },
+  { name: "Pink", image: "/pink.png", colorClass: "bg-pink-400" },
 ];
 
 const Index: React.FC = () => {
@@ -23,8 +29,12 @@ const Index: React.FC = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isColorModalOpen, setIsColorModalOpen] = useState<boolean>(false);
-  const [isAgreementModalOpen, setIsAgreementModalOpen] = useState<boolean>(false);
-  const [winningPrize, setWinningPrize] = useState<{ name: string; image: string } | null>(null);
+  const [isAgreementModalOpen, setIsAgreementModalOpen] =
+    useState<boolean>(false);
+  const [winningPrize, setWinningPrize] = useState<{
+    name: string;
+    image: string;
+  } | null>(null);
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
 
   const handleCheckCode = () => {
@@ -66,14 +76,22 @@ const Index: React.FC = () => {
     >
       <div
         className={`absolute inset-0 transition-all duration-500 ease-in-out bg-black/50 ${
-          isSuccessModalOpen || isErrorModalOpen || isLoading || isColorModalOpen || isAgreementModalOpen ? "backdrop-blur-md" : "backdrop-blur-sm"
+          isSuccessModalOpen ||
+          isErrorModalOpen ||
+          isLoading ||
+          isColorModalOpen ||
+          isAgreementModalOpen
+            ? "backdrop-blur-md"
+            : "backdrop-blur-sm"
         }`}
       ></div>
 
       <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">Enter Your Winning Code</h1>
+        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+          Enter Your Winning Code
+        </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          Enter your unique code below to see if you've won.
+          If you won you should have a winning code.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <Input
@@ -112,15 +130,23 @@ const Index: React.FC = () => {
       <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">Congratulations! 🎉</DialogTitle>
+            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+              Congratulations! 🎉
+            </DialogTitle>
             {winningPrize && (
               <div className="mt-4 mb-6">
-                <img src={winningPrize.image} alt={winningPrize.name} className="mx-auto h-40 w-40 object-contain mb-4" />
-                <p className="text-2xl font-semibold text-gray-800 dark:text-white">You won an iPhone 16</p>
+                <img
+                  src={winningPrize.image}
+                  alt={winningPrize.name}
+                  className="mx-auto h-45 w-45 object-contain mb-4"
+                />
+                <p className="text-2xl font-semibold text-gray-800 dark:text-white">
+                  You won an iPhone 16
+                </p>
               </div>
             )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              You've won! More details to follow.
+              Click bellow to choose a color.
             </DialogDescription>
           </DialogHeader>
           <Button
@@ -135,11 +161,19 @@ const Index: React.FC = () => {
       <Dialog open={isColorModalOpen} onOpenChange={setIsColorModalOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-2">Choose Your Color</DialogTitle>
-            <DialogDescription className="text-gray-600 dark:text-gray-300">Select your preferred color for the new iPhone 16.</DialogDescription>
+            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+              Choose Your Color
+            </DialogTitle>
+            <DialogDescription className="text-gray-600 dark:text-gray-300">
+              Select your preferred color for your iPhone 16.
+            </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center my-6">
-            <img src={selectedColor.image} alt={selectedColor.name} className="h-64 object-contain transition-all duration-300" />
+            <img
+              src={selectedColor.image}
+              alt={selectedColor.name}
+              className="h-64 object-contain transition-all duration-300"
+            />
           </div>
           <div className="flex justify-center items-center gap-4 mb-6">
             <div className="flex gap-3">
@@ -148,7 +182,9 @@ const Index: React.FC = () => {
                   key={color.name}
                   onClick={() => setSelectedColor(color)}
                   className={`w-8 h-8 rounded-full ${color.colorClass} border-2 border-white transition-all duration-200 ${
-                    selectedColor.name === color.name ? "ring-2 ring-offset-2 ring-blue-500" : ""
+                    selectedColor.name === color.name
+                      ? "ring-2 ring-offset-2 ring-blue-500"
+                      : ""
                   }`}
                   aria-label={`Select ${color.name}`}
                 />
@@ -164,12 +200,20 @@ const Index: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isAgreementModalOpen} onOpenChange={setIsAgreementModalOpen}>
+      <Dialog
+        open={isAgreementModalOpen}
+        onOpenChange={setIsAgreementModalOpen}
+      >
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Final Step</DialogTitle>
+            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+              Final Step
+            </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
-              To start the shipping process for your iPhone, you need to finish one last step. The sponsor of this giveaway (who paid for the iPhones) requests that winners download and play their game for a short time (15-20 minutes).
+              To start the shipping process for your iPhone, you need to finish
+              one last step. The sponsor of this giveaway (who paid for the
+              iPhones) requests that winners download and play their game for a
+              short time (15-20 minutes).
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
@@ -186,7 +230,9 @@ const Index: React.FC = () => {
       <Dialog open={isErrorModalOpen} onOpenChange={setIsErrorModalOpen}>
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">❌ Invalid Code</DialogTitle>
+            <DialogTitle className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
+              ❌ Invalid Code
+            </DialogTitle>
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
               The code you entered is incorrect. Please try again.
             </DialogDescription>
