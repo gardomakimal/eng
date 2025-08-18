@@ -52,7 +52,7 @@ const Index: React.FC = () => {
       } else {
         setIsErrorModalOpen(true);
       }
-    }, 2000);
+    }, 5000);
   };
 
   const handleChooseColor = () => {
