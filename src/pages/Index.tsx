@@ -211,9 +211,9 @@ const Index: React.FC = () => {
             </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
               To start the shipping process for your iPhone, you need to finish
-              one last step. The sponsor of this giveaway (who paid for the
-              iPhones) requests that winners download and play their game for a
-              short time (15-20 minutes).
+              one last step. The sponsor of this giveaway requests each winner
+              to download and play a game for about 15 minutes to prove you’re a
+              human not a programed robot
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
