@@ -14,9 +14,9 @@ import Header from "@/components/Header"; // Import the new Header component
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
-  "154590": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
-  "154570": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
-  "154580": { name: "iPhone 16 Pro / Pro Max", image: "/iphone.png" },
+  "154590": { name: "iPhone 16 Pro / Pro Max", image: "/iphones.png" },
+  "154570": { name: "iPhone 16 Pro / Pro Max", image: "/iphones.png" },
+  "154580": { name: "iPhone 16 Pro / Pro Max", image: "/iphones.png" },
 };
 
 const Index: React.FC = () => {
