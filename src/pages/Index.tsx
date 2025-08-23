@@ -88,11 +88,11 @@ const Index: React.FC = () => {
         }`}
       ></div>
 
-      <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
-        <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+      <div className="relative z-10 bg-white p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Enter Your Winning Code
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        <p className="text-lg text-gray-600 mb-8">
           If you won you should have a winning code.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -101,7 +101,7 @@ const Index: React.FC = () => {
             placeholder="Your Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
+            className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
           <Button
@@ -116,13 +116,13 @@ const Index: React.FC = () => {
       </div>
 
       <Dialog open={isLoading} onOpenChange={setIsLoading}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+            <DialogTitle className="text-3xl font-bold text-blue-600 mb-2">
               <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
               Scanning Code...
             </DialogTitle>
-            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+            <DialogDescription className="text-gray-700 text-lg">
               Please wait while we verify your code.
             </DialogDescription>
           </DialogHeader>
@@ -130,9 +130,9 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+            <DialogTitle className="text-3xl font-bold text-green-600 mb-2">
               Congratulations! 🎉
             </DialogTitle>
             {winningPrize && (
@@ -142,12 +142,12 @@ const Index: React.FC = () => {
                   alt={winningPrize.name}
                   className="mx-auto h-45 w-45 object-contain mb-4"
                 />
-                <p className="text-2xl font-semibold text-gray-800 dark:text-white">
+                <p className="text-2xl font-semibold text-gray-800">
                   You won an iPhone 16
                 </p>
               </div>
             )}
-            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+            <DialogDescription className="text-gray-700 text-lg">
               Click below to choose a color.
             </DialogDescription>
           </DialogHeader>
@@ -161,12 +161,12 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isColorModalOpen} onOpenChange={setIsColorModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+            <DialogTitle className="text-3xl font-bold text-gray-800 mb-2">
               Choose Your Color
             </DialogTitle>
-            <DialogDescription className="text-gray-600 dark:text-gray-300">
+            <DialogDescription className="text-gray-600">
               Select your preferred color for your iPhone 16.
             </DialogDescription>
           </DialogHeader>
@@ -206,12 +206,12 @@ const Index: React.FC = () => {
         open={isAgreementModalOpen}
         onOpenChange={setIsAgreementModalOpen}
       >
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+            <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
               Final Step
             </DialogTitle>
-            <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
+            <DialogDescription className="text-gray-600 text-left">
               To start the shipping process for your iPhone, you need to finish
               one last step. Download and play a free game for about 15 minutes
               to prove you’re a human not a programmed Robot.
@@ -229,12 +229,12 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isErrorModalOpen} onOpenChange={setIsErrorModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
+            <DialogTitle className="text-3xl font-bold text-red-600 mb-2">
               ❌ Invalid Code
             </DialogTitle>
-            <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
+            <DialogDescription className="text-gray-700 text-lg">
               The code you entered is incorrect. Please try again.
             </DialogDescription>
           </DialogHeader>
