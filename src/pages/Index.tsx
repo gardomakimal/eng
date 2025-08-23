@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
+import Header from "@/components/Header"; // Import the new Header component
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -68,8 +69,9 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full font-poppins">
-      <div className="flex flex-col items-center justify-center w-full min-h-screen text-center animate-fade-in p-4 md:p-8 lg:p-12">
+    <div className="min-h-screen w-full font-poppins flex flex-col">
+      <Header /> {/* Render the Header component here */}
+      <div className="flex flex-col items-center justify-center flex-grow w-full text-center animate-fade-in p-4 md:p-8 lg:p-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Enter Your Winning Code
         </h1>
