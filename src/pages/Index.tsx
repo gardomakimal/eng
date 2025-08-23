@@ -68,34 +68,15 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div
-      className="relative h-screen flex flex-col items-center justify-center p-4 font-poppins overflow-hidden"
-      style={{
-        backgroundImage: "url('/iphonebg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div
-        className={`absolute inset-0 transition-all duration-500 ease-in-out bg-black/50 ${
-          isSuccessModalOpen ||
-          isErrorModalOpen ||
-          isLoading ||
-          isColorModalOpen ||
-          isAgreementModalOpen
-            ? "backdrop-blur-md"
-            : "backdrop-blur-sm"
-        }`}
-      ></div>
-
-      <div className="relative z-10 bg-white p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
+    <div className="min-h-screen w-full font-poppins">
+      <div className="flex flex-col items-center justify-center w-full min-h-screen text-center animate-fade-in p-4 md:p-8 lg:p-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Enter Your Winning Code
         </h1>
         <p className="text-lg text-gray-600 mb-8">
           If you won you should have a winning code.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
           <Input
             type="text"
             placeholder="Your Code"
