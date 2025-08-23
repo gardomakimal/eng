@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "lucide-react";
+import { Menu } from "lucide-react"; // Changed from User to Menu
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <img src="/logo.png" alt="Logo" className="h-8" />
       </div>
       <div className="flex items-center space-x-4">
-        <User className="h-7 w-7 text-gray-700" />
+        <Menu className="h-7 w-7 text-gray-700" /> {/* Replaced User with Menu */}
       </div>
     </header>
   );
