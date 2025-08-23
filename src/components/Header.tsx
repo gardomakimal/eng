@@ -8,9 +8,6 @@ const Header: React.FC = () => {
         <img src="/logo.png" alt="Logo" className="h-8" />
       </div>
       <div className="flex items-center space-x-4">
-        <div className="flex items-center justify-center border border-gray-400 rounded-md px-3 py-1 text-gray-700 font-semibold text-lg">
-          Card
-        </div>
         <User className="h-7 w-7 text-gray-700" />
       </div>
     </header>
