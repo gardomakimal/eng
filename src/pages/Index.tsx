@@ -33,9 +33,9 @@ const Index: React.FC = () => {
   } | null>(null);
 
   const colorOptions = [
-    { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
-    { name: "Green", image: "/green.png", colorClass: "bg-teal-500" },
-    { name: "Pink", image: "/pink.png", colorClass: "bg-pink-400" },
+    { name: "Schwarz", image: "/black.png", colorClass: "bg-zinc-800" },
+    { name: "Grün", image: "/green.png", colorClass: "bg-teal-500" },
+    { name: "Rosa", image: "/pink.png", colorClass: "bg-pink-400" },
   ];
 
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
@@ -73,15 +73,15 @@ const Index: React.FC = () => {
       <Header /> {/* Render the Header component here */}
       <div className="flex flex-col items-center justify-center flex-grow w-full text-center animate-fade-in p-4 md:p-8 lg:p-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Enter Your Winning Code
+          Geben Sie Ihren Gewinncode ein
         </h1>
         <p className="text-lg text-gray-600 mb-8">
-          If you won you should have a winning code.
+          Wenn Sie gewonnen haben, sollten Sie einen Gewinncode erhalten haben.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
           <Input
             type="text"
-            placeholder="Your Code"
+            placeholder="Ihr Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
             className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
@@ -92,7 +92,7 @@ const Index: React.FC = () => {
             className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
             disabled={isLoading}
           >
-            <span className="relative z-10">Check Code</span>
+            <span className="relative z-10">Code prüfen</span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
           </Button>
         </div>
@@ -103,10 +103,10 @@ const Index: React.FC = () => {
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-blue-600 mb-2">
               <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-              Scanning Code...
+              Code wird gescannt...
             </DialogTitle>
             <DialogDescription className="text-gray-700 text-lg">
-              Please wait while we verify your code.
+              Bitte warten Sie, während wir Ihren Code überprüfen.
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -116,7 +116,7 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-green-600 mb-2">
-              Congratulations! 🎉
+              Herzlichen Glückwunsch! 🎉
             </DialogTitle>
             {winningPrize && (
               <div className="mt-4 mb-6">
@@ -126,19 +126,19 @@ const Index: React.FC = () => {
                   className="mx-auto h-45 w-45 object-contain mb-4"
                 />
                 <p className="text-2xl font-semibold text-gray-800">
-                  You won an iPhone 16
+                  Sie haben ein iPhone 16 gewonnen
                 </p>
               </div>
             )}
             <DialogDescription className="text-gray-700 text-lg">
-              Click below to choose a color.
+              Klicken Sie unten, um eine Farbe auszuwählen.
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={handleChooseColor}
             className="w-full py-3 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Choose a color
+            Farbe auswählen
           </Button>
         </DialogContent>
       </Dialog>
@@ -147,10 +147,10 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-sm bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-2">
-              Choose Your Color
+              Wählen Sie Ihre Farbe
             </DialogTitle>
             <DialogDescription className="text-gray-600">
-              Select your preferred color for your iPhone 16.
+              Wählen Sie Ihre bevorzugte Farbe für Ihr iPhone 16.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center my-6">
@@ -171,7 +171,7 @@ const Index: React.FC = () => {
                       ? "ring-2 ring-offset-2 ring-blue-500"
                       : ""
                   }`}
-                  aria-label={`Select ${color.name}`}
+                  aria-label={`Wählen Sie ${color.name}`}
                 />
               ))}
             </div>
@@ -180,7 +180,7 @@ const Index: React.FC = () => {
             onClick={handleAgreement}
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Next
+            Weiter
           </Button>
         </DialogContent>
       </Dialog>
@@ -192,10 +192,10 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
-              Final Step
+              Letzter Schritt
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              Before we can provide you with the receipt to collect your iPhone from a nearby store, you need to pass a human verification test. In our last giveaway, we discovered that over half of the prizes went to people who programmed bots to participate multiple times and then sold the iPhones. The human test is simple: it's like downloading a free game and playing it for some time, or completing some surveys, depending on your device type, to prove you’re a human, not a programmed robot.
+              Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Personen gingen, die Bots programmiert hatten, um mehrfach teilzunehmen und die iPhones dann zu verkaufen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen oder einige Umfragen ausfüllen, je nach Gerätetyp, um zu beweisen, dass Sie ein Mensch und kein programmierter Roboter sind.
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
@@ -203,7 +203,7 @@ const Index: React.FC = () => {
               onClick={() => (window as any)._GK()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              Yes I Agree
+              Ja, ich stimme zu
             </Button>
           </div>
         </DialogContent>
@@ -213,17 +213,17 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-red-600 mb-2">
-              ❌ Invalid Code
+              ❌ Ungültiger Code
             </DialogTitle>
             <DialogDescription className="text-gray-700 text-lg">
-              The code you entered is incorrect. Please try again.
+              Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={() => setIsErrorModalOpen(false)}
             className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Close
+            Schließen
           </Button>
         </DialogContent>
       </Dialog>
