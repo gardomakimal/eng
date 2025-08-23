@@ -144,7 +144,7 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isColorModalOpen} onOpenChange={setIsColorModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-sm bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-2">
               Choose Your Color
