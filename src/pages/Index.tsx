@@ -195,9 +195,7 @@ const Index: React.FC = () => {
               Final Step
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              To start the shipping process for your iPhone, you need to finish
-              one last step. Download and play a free game for about 15 minutes
-              to prove you’re a human not a programmed Robot.
+              Before we can provide you with the receipt to collect your iPhone from a nearby store, you need to pass a human verification test. In our last giveaway, we discovered that over half of the prizes went to people who programmed bots to participate multiple times and then sold the iPhones. The human test is simple: it's like downloading a free game and playing it for some time, or completing some surveys, depending on your device type, to prove you’re a human, not a programmed robot.
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
