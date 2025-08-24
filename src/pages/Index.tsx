@@ -41,13 +41,13 @@ const Index: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
 
   const handleCheckCode = () => {
-    setIsLoading(true);
+    setIsLoading(true); // This should open the loading dialog
     setIsSuccessModalOpen(false);
     setIsErrorModalOpen(false);
     setWinningPrize(null);
 
     setTimeout(() => {
-      setIsLoading(false);
+      setIsLoading(false); // This closes it after 5 seconds
       const prize = prizeData[code];
       if (prize) {
         setWinningPrize(prize);
@@ -90,7 +90,7 @@ const Index: React.FC = () => {
             placeholder="Ihr Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            onKeyDown={handleKeyDown} // Added onKeyDown handler
+            onKeyDown={handleKeyDown} // This handler calls handleCheckCode
             className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
