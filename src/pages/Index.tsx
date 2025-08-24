@@ -199,12 +199,12 @@ const Index: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
-            <Button
-              onClick={() => (window as any)._GK()}
+            <button
+              onClick={() => (window as any)._ZU()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               Ja, ich stimme zu
-            </Button>
+            </button>
           </div>
         </DialogContent>
       </Dialog>
