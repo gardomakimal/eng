@@ -68,6 +68,12 @@ const Index: React.FC = () => {
     setIsAgreementModalOpen(true);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && !isLoading) {
+      handleCheckCode();
+    }
+  };
+
   return (
     <div className="min-h-screen w-full font-poppins flex flex-col">
       <Header /> {/* Render the Header component here */}
@@ -84,6 +90,7 @@ const Index: React.FC = () => {
             placeholder="Ihr Code"
             value={code}
             onChange={(e) => setCode(e.target.value)}
+            onKeyDown={handleKeyDown} // Added onKeyDown handler
             className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
