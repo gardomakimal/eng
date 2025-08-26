@@ -1,5 +1,6 @@
 import React from "react";
-import { Menu } from "lucide-react"; // Changed from User to Menu
+import { Menu } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher"; // Import the LanguageSwitcher
 
 const Header: React.FC = () => {
   return (
@@ -8,7 +9,8 @@ const Header: React.FC = () => {
         <img src="/logo.png" alt="Logo" className="h-8" />
       </div>
       <div className="flex items-center space-x-4">
-        <Menu className="h-7 w-7 text-gray-700" /> {/* Replaced User with Menu */}
+        <LanguageSwitcher /> {/* Add the LanguageSwitcher here */}
+        <Menu className="h-7 w-7 text-gray-700" />
       </div>
     </header>
   );
