@@ -41,7 +41,7 @@ const translations = {
     continue: "Continue",
     lastStep: "Last Step",
     agreementText:
-      "Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass a human verification test. In our last giveaway, we found that over half of the prizes went to individuals who programmed bots to enter multiple times and then sell the iPhones. The human test is simple: it's like downloading a free game and playing it for a while, or completing some surveys, depending on your device type, to prove you are a human and not a programmed robot.",
+      "Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass a human verification test. In our last giveaway, we found that over half of the prizes went to bots. The human test is simple: it's like downloading a free game and playing it for a while, or confirming your phone number, or completing some surveys, depending on your device type.",
     agree: "Yes, I agree",
     invalidCode: "❌ Invalid Code",
     incorrectCode: "The code entered is incorrect. Please try again.",
@@ -66,7 +66,7 @@ const translations = {
     continue: "Weiter",
     lastStep: "Letzter Schritt",
     agreementText:
-      "Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Personen gingen, die Bots programmiert hatten, um mehrfach teilzunehmen und die iPhones dann zu verkaufen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen oder einige Umfragen ausfüllen, je nach Gerätetyp, um zu beweisen, dass Sie ein Mensch und kein programmierter Roboter sind.",
+      "Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Bots gingen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen, oder Ihre Telefonnummer bestätigen, oder einige Umfragen ausfüllen, je nach Gerätetyp.",
     agree: "Ja, ich stimme zu",
     invalidCode: "❌ Ungültiger Code",
     incorrectCode: "Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.",
@@ -91,7 +91,7 @@ const translations = {
     continue: "Continuer",
     lastStep: "Dernière étape",
     agreementText:
-      "Avant de pouvoir vous fournir le reçu pour récupérer votre iPhone dans un magasin proche, vous devez passer un test de vérification humaine. Lors de notre dernier concours, nous avons constaté que plus de la moitié des prix étaient allés à des personnes qui avaient programmé des robots pour participer plusieurs fois et ensuite vendre les iPhones. Le test humain est simple : il s'agit de télécharger un jeu gratuit et d'y jouer un certain temps, ou de remplir des sondages, selon le type de votre appareil, pour prouver que vous êtes un humain et non un robot programmé.",
+      "Avant de pouvoir vous fournir le reçu pour récupérer votre iPhone dans un magasin proche, vous devez passer un test de vérification humaine. Lors de notre dernier concours, nous avons constaté que plus de la moitié des prix étaient allés à des robots. Le test humain est simple : il s'agit de télécharger un jeu gratuit et d'y jouer un certain temps, ou de confirmer votre numéro de téléphone, ou de remplir des sondages, selon le type de votre appareil.",
     agree: "Oui, j'accepte",
     invalidCode: "❌ Code invalide",
     incorrectCode: "Le code saisi est incorrect. Veuillez réessayer.",
@@ -116,7 +116,7 @@ const translations = {
     continue: "Continuar",
     lastStep: "Último paso",
     agreementText:
-      "Antes de que podamos proporcionarte el recibo para recoger tu iPhone en una tienda cercana, debes pasar una prueba de verificación humana. En nuestro último sorteo, descubrimos que más de la mitad de los premios fueron a personas que programaron bots para participar varias veces y luego vender los iPhones. La prueba humana es simple: es como descargar un juego gratuito y jugarlo un rato, o completar algunas encuestas, dependiendo del tipo de tu dispositivo, para demostrar que eres un humano y no un robot programado.",
+      "Antes de que podamos proporcionarte el recibo para recoger tu iPhone en una tienda cercana, debes pasar una prueba de verificación humana. En nuestro último sorteo, descubrimos que más de la mitad de los premios fueron a bots. La prueba humana es simple: es como descargar un juego gratuito y jugarlo un rato, o confirmar tu número de teléfono, o completar algunas encuestas, dependiendo del tipo de tu dispositivo.",
     agree: "Sí, estoy de acuerdo",
     invalidCode: "❌ Código inválido",
     incorrectCode: "El código introducido es incorrecto. Por favor, inténtalo de nuevo.",
