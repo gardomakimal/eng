@@ -1,0 +1,32 @@
+{
+  "translation": {
+    "indexPage": {
+      "title": "Geben Sie Ihren Gewinncode ein",
+      "description": "Wenn Sie gewonnen haben, sollten Sie einen Gewinncode erhalten haben.",
+      "inputPlaceholder": "Ihr Code",
+      "checkCodeButton": "Code prüfen",
+      "scanningTitle": "Code wird gescannt...",
+      "scanningDescription": "Bitte warten Sie, während wir Ihren Code überprüfen.",
+      "congratulationsTitle": "Herzlichen Glückwunsch! 🎉",
+      "wonIphone": "Sie haben ein iPhone 16 gewonnen",
+      "chooseColorPrompt": "Klicken Sie unten, um eine Farbe auszuwählen.",
+      "chooseColorButton": "Farbe auswählen",
+      "selectColorTitle": "Wählen Sie Ihre Farbe",
+      "selectColorDescription": "Wählen Sie Ihre bevorzugte Farbe für Ihr iPhone 16.",
+      "colorBlack": "Schwarz",
+      "colorGreen": "Grün",
+      "colorPink": "Rosa",
+      "continueButton": "Weiter",
+      "lastStepTitle": "Letzter Schritt",
+      "agreementText": "Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Personen gingen, die Bots programmiert hatten, um mehrfach teilzunehmen und die iPhones dann zu verkaufen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen oder einige Umfragen ausfüllen, je nach Gerätetyp, um zu beweisen, dass Sie ein Mensch und kein programmierter Roboter sind.",
+      "agreeButton": "Ja, ich stimme zu",
+      "invalidCodeTitle": "❌ Ungültiger Code",
+      "invalidCodeDescription": "Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.",
+      "closeButton": "Schließen"
+    },
+    "notFoundPage": {
+      "title": "Hoppla! Seite nicht gefunden",
+      "backToHome": "Zur Startseite zurückkehren"
+    }
+  }
+}

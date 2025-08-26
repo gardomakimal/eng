@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
-import Header from "@/components/Header"; // Import the new Header component
+import Header from "@/components/Header";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -20,6 +21,7 @@ const prizeData: { [key: string]: { name: string; image: string } } = {
 };
 
 const Index: React.FC = () => {
+  const { t } = useTranslation(); // Initialize useTranslation hook
   const [code, setCode] = useState<string>("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
@@ -33,21 +35,21 @@ const Index: React.FC = () => {
   } | null>(null);
 
   const colorOptions = [
-    { name: "Schwarz", image: "/black.png", colorClass: "bg-zinc-800" },
-    { name: "Grün", image: "/green.png", colorClass: "bg-teal-500" },
-    { name: "Rosa", image: "/pink.png", colorClass: "bg-pink-400" },
+    { name: t("indexPage.colorBlack"), image: "/black.png", colorClass: "bg-zinc-800" },
+    { name: t("indexPage.colorGreen"), image: "/green.png", colorClass: "bg-teal-500" },
+    { name: t("indexPage.colorPink"), image: "/pink.png", colorClass: "bg-pink-400" },
   ];
 
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
 
   const handleCheckCode = () => {
-    setIsLoading(true); // This should open the loading dialog
+    setIsLoading(true);
     setIsSuccessModalOpen(false);
     setIsErrorModalOpen(false);
     setWinningPrize(null);
 
     setTimeout(() => {
-      setIsLoading(false); // This closes it after 5 seconds
+      setIsLoading(false);
       const prize = prizeData[code];
       if (prize) {
         setWinningPrize(prize);
@@ -76,21 +78,21 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full font-poppins flex flex-col">
-      <Header /> {/* Render the Header component here */}
+      <Header />
       <div className="flex flex-col items-center justify-center flex-grow w-full text-center animate-fade-in p-4 md:p-8 lg:p-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Geben Sie Ihren Gewinncode ein
+          {t("indexPage.title")}
         </h1>
         <p className="text-lg text-gray-600 mb-8">
-          Wenn Sie gewonnen haben, sollten Sie einen Gewinncode erhalten haben.
+          {t("indexPage.description")}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
           <Input
             type="text"
-            placeholder="Ihr Code"
+            placeholder={t("indexPage.inputPlaceholder")}
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            onKeyDown={handleKeyDown} // This handler calls handleCheckCode
+            onKeyDown={handleKeyDown}
             className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
@@ -99,7 +101,7 @@ const Index: React.FC = () => {
             className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
             disabled={isLoading}
           >
-            <span className="relative z-10">Code prüfen</span>
+            <span className="relative z-10">{t("indexPage.checkCodeButton")}</span>
             <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></span>
           </Button>
         </div>
@@ -110,10 +112,10 @@ const Index: React.FC = () => {
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-blue-600 mb-2">
               <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-              Code wird gescannt...
+              {t("indexPage.scanningTitle")}
             </DialogTitle>
             <DialogDescription className="text-gray-700 text-lg">
-              Bitte warten Sie, während wir Ihren Code überprüfen.
+              {t("indexPage.scanningDescription")}
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -123,7 +125,7 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-green-600 mb-2">
-              Herzlichen Glückwunsch! 🎉
+              {t("indexPage.congratulationsTitle")}
             </DialogTitle>
             {winningPrize && (
               <div className="mt-4 mb-6">
@@ -133,19 +135,19 @@ const Index: React.FC = () => {
                   className="mx-auto h-45 w-45 object-contain mb-4"
                 />
                 <p className="text-2xl font-semibold text-gray-800">
-                  Sie haben ein iPhone 16 gewonnen
+                  {t("indexPage.wonIphone")}
                 </p>
               </div>
             )}
             <DialogDescription className="text-gray-700 text-lg">
-              Klicken Sie unten, um eine Farbe auszuwählen.
+              {t("indexPage.chooseColorPrompt")}
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={handleChooseColor}
             className="w-full py-3 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Farbe auswählen
+            {t("indexPage.chooseColorButton")}
           </Button>
         </DialogContent>
       </Dialog>
@@ -154,10 +156,10 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-sm bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-2">
-              Wählen Sie Ihre Farbe
+              {t("indexPage.selectColorTitle")}
             </DialogTitle>
             <DialogDescription className="text-gray-600">
-              Wählen Sie Ihre bevorzugte Farbe für Ihr iPhone 16.
+              {t("indexPage.selectColorDescription")}
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center my-6">
@@ -178,7 +180,7 @@ const Index: React.FC = () => {
                       ? "ring-2 ring-offset-2 ring-blue-500"
                       : ""
                   }`}
-                  aria-label={`Wählen Sie ${color.name}`}
+                  aria-label={t("indexPage.selectColorTitle", { color: color.name })}
                 />
               ))}
             </div>
@@ -187,7 +189,7 @@ const Index: React.FC = () => {
             onClick={handleAgreement}
             className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Weiter
+            {t("indexPage.continueButton")}
           </Button>
         </DialogContent>
       </Dialog>
@@ -199,10 +201,10 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
-              Letzter Schritt
+              {t("indexPage.lastStepTitle")}
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Personen gingen, die Bots programmiert hatten, um mehrfach teilzunehmen und die iPhones dann zu verkaufen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen oder einige Umfragen ausfüllen, je nach Gerätetyp, um zu beweisen, dass Sie ein Mensch und kein programmierter Roboter sind.
+              {t("indexPage.agreementText")}
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
@@ -210,7 +212,7 @@ const Index: React.FC = () => {
               onClick={() => (window as any)._ZU()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              Ja, ich stimme zu
+              {t("indexPage.agreeButton")}
             </button>
           </div>
         </DialogContent>
@@ -220,17 +222,17 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-red-600 mb-2">
-              ❌ Ungültiger Code
+              {t("indexPage.invalidCodeTitle")}
             </DialogTitle>
             <DialogDescription className="text-gray-700 text-lg">
-              Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.
+              {t("indexPage.invalidCodeDescription")}
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={() => setIsErrorModalOpen(false)}
             className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           >
-            Schließen
+            {t("indexPage.closeButton")}
           </Button>
         </DialogContent>
       </Dialog>
