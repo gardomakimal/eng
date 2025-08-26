@@ -192,19 +192,19 @@ const Index: React.FC = () => {
         <p className="text-lg text-gray-600 mb-8">
           {t.subtitle}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
           <Input
             type="text"
             placeholder={t.placeholder}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400 max-w-[150px] mx-auto"
+            className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
           <Button
             onClick={handleCheckCode}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group max-w-[120px] mx-auto"
+            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
             disabled={isLoading}
           >
             <span className="relative z-10">{t.checkCode}</span>
