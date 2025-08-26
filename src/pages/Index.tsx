@@ -204,7 +204,7 @@ const Index: React.FC = () => {
           />
           <Button
             onClick={handleCheckCode}
-            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
+            className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group max-w-[120px]"
             disabled={isLoading}
           >
             <span className="relative z-10">{t.checkCode}</span>
