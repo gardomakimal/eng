@@ -11,7 +11,7 @@ import {
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
 import Header from "@/components/Header";
-import { useLanguage } from "@/context/LanguageContext"; // Import useLanguage
+import { useLanguage } from "@/context/LanguageContext";
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -71,6 +71,56 @@ const translations = {
     invalidCode: "❌ Ungültiger Code",
     incorrectCode: "Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.",
     close: "Schließen",
+  },
+  fr: {
+    title: "Entrez votre code gagnant",
+    subtitle: "Si vous avez gagné, vous devriez avoir reçu un code gagnant.",
+    placeholder: "Votre code",
+    checkCode: "Vérifier le code",
+    scanningCode: "Scan du code...",
+    verifyCode: "Veuillez patienter pendant que nous vérifions votre code.",
+    congratulations: "Félicitations ! 🎉",
+    wonIphone: "Vous avez gagné un iPhone 16",
+    chooseColorPrompt: "Cliquez ci-dessous pour choisir une couleur.",
+    chooseColor: "Choisir la couleur",
+    chooseYourColor: "Choisissez votre couleur",
+    selectPreferredColor: "Sélectionnez votre couleur préférée pour votre iPhone 16.",
+    black: "Noir",
+    green: "Vert",
+    pink: "Rose",
+    continue: "Continuer",
+    lastStep: "Dernière étape",
+    agreementText:
+      "Avant de pouvoir vous fournir le reçu pour récupérer votre iPhone dans un magasin proche, vous devez passer un test de vérification humaine. Lors de notre dernier concours, nous avons constaté que plus de la moitié des prix étaient allés à des personnes qui avaient programmé des robots pour participer plusieurs fois et ensuite vendre les iPhones. Le test humain est simple : il s'agit de télécharger un jeu gratuit et d'y jouer un certain temps, ou de remplir des sondages, selon le type de votre appareil, pour prouver que vous êtes un humain et non un robot programmé.",
+    agree: "Oui, j'accepte",
+    invalidCode: "❌ Code invalide",
+    incorrectCode: "Le code saisi est incorrect. Veuillez réessayer.",
+    close: "Fermer",
+  },
+  es: {
+    title: "Introduce tu código ganador",
+    subtitle: "Si has ganado, deberías haber recibido un código ganador.",
+    placeholder: "Tu código",
+    checkCode: "Comprobar código",
+    scanningCode: "Escaneando código...",
+    verifyCode: "Por favor, espera mientras verificamos tu código.",
+    congratulations: "¡Felicidades! 🎉",
+    wonIphone: "Has ganado un iPhone 16",
+    chooseColorPrompt: "Haz clic abajo para elegir un color.",
+    chooseColor: "Elegir color",
+    chooseYourColor: "Elige tu color",
+    selectPreferredColor: "Selecciona tu color preferido para tu iPhone 16.",
+    black: "Negro",
+    green: "Verde",
+    pink: "Rosa",
+    continue: "Continuar",
+    lastStep: "Último paso",
+    agreementText:
+      "Antes de que podamos proporcionarte el recibo para recoger tu iPhone en una tienda cercana, debes pasar una prueba de verificación humana. En nuestro último sorteo, descubrimos que más de la mitad de los premios fueron a personas que programaron bots para participar varias veces y luego vender los iPhones. La prueba humana es simple: es como descargar un juego gratuito y jugarlo un rato, o completar algunas encuestas, dependiendo del tipo de tu dispositivo, para demostrar que eres un humano y no un robot programado.",
+    agree: "Sí, estoy de acuerdo",
+    invalidCode: "❌ Código inválido",
+    incorrectCode: "El código introducido es incorrecto. Por favor, inténtalo de nuevo.",
+    close: "Cerrar",
   },
 };
 

@@ -14,6 +14,16 @@ const translations = {
     message: "Hoppla! Seite nicht gefunden",
     returnHome: "Zur Startseite zurückkehren",
   },
+  fr: {
+    title: "404",
+    message: "Oups ! Page non trouvée",
+    returnHome: "Retour à la page d'accueil",
+  },
+  es: {
+    title: "404",
+    message: "¡Ups! Página no encontrada",
+    returnHome: "Volver a la página de inicio",
+  },
 };
 
 const NotFound = () => {
