@@ -192,7 +192,7 @@ const Index: React.FC = () => {
         <p className="text-lg text-gray-600 mb-8">
           {t.subtitle}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-xs w-full">
           <Input
             type="text"
             placeholder={t.placeholder}
