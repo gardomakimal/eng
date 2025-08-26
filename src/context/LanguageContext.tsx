@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-type Language = 'en' | 'de' | 'fr' | 'es'; // Added 'fr' and 'es'
+type Language = 'en' | 'de' | 'fr' | 'es';
 
 interface LanguageContextType {
   language: Language;
@@ -10,7 +10,18 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en'); // Default to English
+  const getInitialLanguage = (): Language => {
+    if (typeof window !== 'undefined') {
+      const browserLanguage = navigator.language.split('-')[0]; // Get primary language code (e.g., 'en' from 'en-US')
+      const supportedLanguages: Language[] = ['en', 'de', 'fr', 'es'];
+      if (supportedLanguages.includes(browserLanguage as Language)) {
+        return browserLanguage as Language;
+      }
+    }
+    return 'en'; // Default to English if browser language is not supported or not available
+  };
+
+  const [language, setLanguage] = useState<Language>(getInitialLanguage());
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
