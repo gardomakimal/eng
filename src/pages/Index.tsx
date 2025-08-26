@@ -199,7 +199,7 @@ const Index: React.FC = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400 w-full sm:w-auto max-w-[150px]"
+            className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400 max-w-[150px] mx-auto"
             disabled={isLoading}
           />
           <Button
