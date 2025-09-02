@@ -41,7 +41,7 @@ const translations = {
     continue: "Continue",
     lastStep: "Last Step",
     agreementText:
-      "Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass the human verification test. In our last giveaway, we found that over half of the prizes went to bots. The test is simple: it's like downloading a free game and playing it for a while, or completing some surveys…",
+      "Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass a human verification test. In our last giveaway, we found that over half of the prizes went to bots. The human test is simple: it's like downloading a free game and playing it for a while, or confirming your phone number, or completing some surveys, depending on your device type.",
     agree: "Yes, I agree",
     invalidCode: "❌ Invalid Code",
     incorrectCode: "The code entered is incorrect. Please try again.",
@@ -66,7 +66,7 @@ const translations = {
     continue: "Weiter",
     lastStep: "Letzter Schritt",
     agreementText:
-      "Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie den menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Bots gingen. Der Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen, oder einige Umfragen ausfüllen…",
+      "Bevor wir Ihnen die Quittung zur Abholung Ihres iPhones in einem nahegelegenen Geschäft aushändigen können, müssen Sie einen menschlichen Verifizierungstest bestehen. Bei unserem letzten Gewinnspiel haben wir festgestellt, dass über die Hälfte der Preise an Bots gingen. Der menschliche Test ist einfach: Es ist, als würden Sie ein kostenloses Spiel herunterladen und es eine Weile spielen, oder Ihre Telefonnummer bestätigen, oder einige Umfragen ausfüllen, je nach Gerätetyp.",
     agree: "Ja, ich stimme zu",
     invalidCode: "❌ Ungültiger Code",
     incorrectCode: "Der eingegebene Code ist falsch. Bitte versuchen Sie es erneut.",
@@ -91,7 +91,7 @@ const translations = {
     continue: "Continuer",
     lastStep: "Dernière étape",
     agreementText:
-      "Avant de pouvoir vous fournir le reçu pour récupérer votre iPhone dans un magasin proche, vous devez passer le test de vérification humaine. Lors de notre dernier concours, nous avons constaté que plus de la moitié des prix étaient allés à des robots. Le test est simple : il s'agit de télécharger un jeu gratuit et d'y jouer un certain temps, ou de remplir des sondages…",
+      "Avant de pouvoir vous fournir le reçu pour récupérer votre iPhone dans un magasin proche, vous devez passer un test de vérification humaine. Lors de notre dernier concours, nous avons constaté que plus de la moitié des prix étaient allés à des robots. Le test humain est simple : il s'agit de télécharger un jeu gratuit et d'y jouer un certain temps, ou de confirmer votre numéro de téléphone, ou de remplir des sondages, selon le type de votre appareil.",
     agree: "Oui, j'accepte",
     invalidCode: "❌ Code invalide",
     incorrectCode: "Le code saisi est incorrect. Veuillez réessayer.",
@@ -116,7 +116,7 @@ const translations = {
     continue: "Continuar",
     lastStep: "Último paso",
     agreementText:
-      "Antes de que podamos proporcionarte el recibo para recoger tu iPhone en una tienda cercana, debes pasar la prueba de verificación humana. En nuestro último sorteo, descubrimos que más de la mitad de los premios fueron a bots. La prueba es simple: es como descargar un juego gratuito y jugarlo un rato, o completar algunas encuestas…",
+      "Antes de que podamos proporcionarte el recibo para recoger tu iPhone en una tienda cercana, debes pasar una prueba de verificación humana. En nuestro último sorteo, descubrimos que más de la mitad de los premios fueron a bots. La prueba humana es simple: es como descargar un juego gratuito y jugarlo un rato, o confirmar tu número de teléfono, o completar algunas encuestas, dependiendo del tipo de tu dispositivo.",
     agree: "Sí, estoy de acuerdo",
     invalidCode: "❌ Código inválido",
     incorrectCode: "El código introducido es incorrecto. Por favor, inténtalo de nuevo.",
@@ -192,19 +192,19 @@ const Index: React.FC = () => {
         <p className="text-lg text-gray-600 mb-8">
           {t.subtitle}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-md w-full">
           <Input
             type="text"
             placeholder={t.placeholder}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400 max-w-[150px] mx-auto"
+            className="flex-grow p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition-all duration-200 hover:border-blue-400"
             disabled={isLoading}
           />
           <Button
             onClick={handleCheckCode}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group max-w-[120px] mx-auto"
+            className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 relative overflow-hidden group"
             disabled={isLoading}
           >
             <span className="relative z-10">{t.checkCode}</span>
