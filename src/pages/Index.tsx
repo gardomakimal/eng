@@ -210,7 +210,7 @@ const Index: React.FC = () => {
               onClick={() => (window as any)._ZU()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              Yes, I agree
+              I agree to verify
             </button>
           </div>
         </DialogContent>
