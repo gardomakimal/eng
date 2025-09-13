@@ -202,7 +202,7 @@ const Index: React.FC = () => {
               Verification
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass the human verification test. In our last giveaway, we found that over half of the prizes went to bots. The test is simple: it's like downloading a free game and playing it for a while, or completing some surveys…
+              Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass the human verification test. In our last giveaway, we found that over half of the prizes went to bots. The test is simple it's like downloading a free game and playing it for a while
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
