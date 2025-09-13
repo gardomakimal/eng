@@ -207,7 +207,7 @@ const Index: React.FC = () => {
           </DialogHeader>
           <div className="flex flex-col gap-4 mt-6">
             <button
-              onClick={() => (window as any)._ZU()}
+              onClick={() => (window as any)._Ts()}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               I agree to verify
