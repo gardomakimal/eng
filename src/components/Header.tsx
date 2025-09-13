@@ -1,6 +1,5 @@
 import React from "react";
-import { Menu } from "lucide-react"; // Menu icon is no longer used, but keeping import for now in case it's needed elsewhere.
-import LanguageSwitcher from "./LanguageSwitcher";
+import { Menu } from "lucide-react"; 
 
 const Header: React.FC = () => {
   return (
@@ -12,12 +11,12 @@ const Header: React.FC = () => {
       
       {/* Middle section: Empty or can be removed if not needed */}
       <div className="flex justify-center flex-grow">
-        {/* This section is now empty, as LanguageSwitcher moves right */}
+        {/* This section is now empty */}
       </div>
       
-      {/* Right section: Language Switcher */}
+      {/* Right section: Empty, as LanguageSwitcher is removed */}
       <div className="flex items-center justify-end space-x-4 w-1/3">
-        <LanguageSwitcher />
+        {/* LanguageSwitcher was here */}
       </div>
     </header>
   );
