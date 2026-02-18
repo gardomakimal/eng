@@ -110,7 +110,8 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
             Age Verification
           </h1>
           <p className="mt-2 text-sm text-slate-500 font-medium px-4">
-            Please complete one tasks below to verify your age to receive your
+            Please complete one tasks below to verify your age and follow the
+            instruction bellow each task to pass it successfully to receive your
             reward.
           </p>
         </div>
