@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShieldCheck, Loader2, ChevronRight, Info, X } from "lucide-react";
+import { ShieldCheck, Loader2, ChevronRight, Info, X, Star } from "lucide-react";
 
 const USER_ID = "319070";
 const API_KEY = "3585ee70b06a7d74d5b8877f63d87db3";
@@ -24,16 +24,30 @@ const Locker = ({ onClose }) => {
       window[callbackName] = (data) => {
         try {
           const rawOffers = Array.isArray(data) ? data : data.offers || [];
-          const mappedOffers = rawOffers.map((offer) => {
+          const mappedOffers = rawOffers.map((offer, index) => {
             let imgUrl = offer.network_icon || offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
             if (imgUrl && !imgUrl.startsWith("http")) {
               imgUrl = `${BASE_URL}${imgUrl.startsWith("/") ? "" : "/"}${imgUrl}`;
             }
+
+            const difficulties = ["Easy", "Medium", "Hard"];
+            const colors = {
+              Easy: "bg-[#00c9a7]",
+              Medium: "bg-[#ff9f43]",
+              Hard: "bg-[#ee5253]"
+            };
+
+            // Rating logic: 1st=5, 2nd=4, 3rd=3
+            const ratings = [5, 4, 3];
+
             return {
               name: offer.anchor || offer.name || "Verification Task",
-              description: offer.conversion || offer.adcopy || "Complete this step to verify.",
+              description: offer.conversion || offer.adcopy || "Complete with valid information",
               link: offer.url || offer.link,
               image: imgUrl,
+              difficulty: difficulties[index % 3],
+              badgeColor: colors[difficulties[index % 3]],
+              rating: ratings[index % 3] || 3
             };
           });
 
@@ -114,9 +128,14 @@ const Locker = ({ onClose }) => {
                     href={offer.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-4 p-4 transition-all border-2 border-slate-200 bg-slate-50/50 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50"
+                    className="group relative flex items-start gap-4 p-4 transition-all border-2 border-slate-200 bg-slate-50/50 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50 overflow-hidden"
                   >
-                    <div className="flex-shrink-0 mt-1">
+                    {/* Difficulty Badge */}
+                    <div className={`absolute top-0 right-0 px-5 py-1.5 rounded-bl-2xl text-[11px] font-black text-white shadow-sm z-10 tracking-wide ${offer.badgeColor}`}>
+                      {offer.difficulty}
+                    </div>
+
+                    <div className="flex flex-col items-center flex-shrink-0 mt-1">
                       <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-slate-200 flex items-center justify-center shadow-sm">
                         {offer.image ? (
                           <img
@@ -133,19 +152,29 @@ const Locker = ({ onClose }) => {
                           </div>
                         )}
                       </div>
+                      
+                      {/* Star Rating based on specific requirements */}
+                      <div className="flex mt-2 gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`w-2.5 h-2.5 ${i < offer.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-slate-200 text-slate-200'}`} 
+                          />
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="flex-grow min-w-0">
-                      <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
+                    <div className="flex-grow min-w-0 pr-12">
+                      <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2">
                         {offer.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1">
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1 line-clamp-1">
                         {offer.description}
                       </p>
                     </div>
 
-                    <div className="flex-shrink-0 w-9 h-9 mt-2.5 flex items-center justify-center rounded-full bg-white text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm border border-slate-100">
-                      <ChevronRight className="w-5 h-5" />
+                    <div className="absolute bottom-4 right-4 flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-white text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm border border-slate-100">
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </a>
                 ))
