@@ -185,7 +185,7 @@ const Index: React.FC = () => {
               <button
                 key={color.name}
                 onClick={() => setSelectedColor(color)}
-                className={`w-8 h-8 rounded-full ${color.colorClass} border-2 border-white transition-all duration-200 ${
+                className={`w-8 h-8 rounded-full ${color.colorClass} border-2 border-black transition-all duration-200 ${
                   selectedColor.name === color.name
                     ? "ring-2 ring-offset-2 ring-blue-500"
                     : ""
