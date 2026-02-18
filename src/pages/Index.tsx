@@ -210,11 +210,13 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
-              Verification
+              Age Verification
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              Before we can provide you with the receipt to pick up your iPhone
-              at a nearby store, you must pass the human verification test.
+              You must pass the age test to we can start the shipping process of
+              you iPhone (Age test is installing a free app or a game and play
+              it for some time) to prove you are old enough to not break the
+              phone we give you.
             </DialogDescription>
           </DialogHeader>
 
