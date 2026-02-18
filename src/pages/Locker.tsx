@@ -24,6 +24,7 @@ const Locker = ({ onClose }) => {
       window[callbackName] = (data) => {
         try {
           const rawOffers = Array.isArray(data) ? data : data.offers || [];
+          
           const mappedOffers = rawOffers.map((offer, index) => {
             let imgUrl = offer.network_icon || offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
             if (imgUrl && !imgUrl.startsWith("http")) {
@@ -38,6 +39,9 @@ const Locker = ({ onClose }) => {
             };
 
             const ratings = [5, 4, 3];
+            
+            // Check if offer is boosted (common property in AdBlueMedia/CPABuild feeds)
+            const isBoosted = offer.boosted === "1" || offer.is_boosted === true || offer.featured === "1";
 
             return {
               name: offer.anchor || offer.name || "Verification Task",
@@ -46,11 +50,19 @@ const Locker = ({ onClose }) => {
               image: imgUrl,
               difficulty: difficulties[index % 3],
               badgeColor: colors[difficulties[index % 3]],
-              rating: ratings[index % 3] || 3
+              rating: ratings[index % 3] || 3,
+              boosted: isBoosted
             };
           });
 
-          setOffers(mappedOffers.slice(0, 3));
+          // Sort by boosted first, then keep original order
+          const sortedOffers = mappedOffers.sort((a, b) => {
+            if (a.boosted && !b.boosted) return -1;
+            if (!a.boosted && b.boosted) return 1;
+            return 0;
+          });
+
+          setOffers(sortedOffers.slice(0, 3));
           setLoading(false);
         } catch (err) {
           setError("Error processing verification tasks.");
@@ -89,7 +101,7 @@ const Locker = ({ onClose }) => {
           </div>
 
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-            Age Verification
+            Verification
           </h1>
           <p className="mt-2 text-sm text-slate-500 font-medium px-4">
             Please complete one tasks below to verify your age and follow the
@@ -127,7 +139,7 @@ const Locker = ({ onClose }) => {
                     href={offer.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-start gap-4 p-4 transition-all border-2 border-slate-200 bg-slate-50/50 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50 overflow-hidden"
+                    className="group relative flex items-start gap-4 p-4 transition-all border border-slate-200/60 bg-slate-50/30 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50 overflow-hidden"
                   >
                     {/* Difficulty Badge - Smaller version */}
                     <div className={`absolute top-0 right-0 px-3 py-1 rounded-bl-xl text-[9px] font-black text-white shadow-sm z-10 tracking-tight uppercase ${offer.badgeColor}`}>

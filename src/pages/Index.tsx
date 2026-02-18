@@ -210,7 +210,7 @@ const Index: React.FC = () => {
         <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
-              Age Verification
+              Verification
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
               You must pass the age test to we can start the shipping process of
