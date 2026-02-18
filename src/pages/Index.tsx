@@ -39,7 +39,6 @@ const Index: React.FC = () => {
     { name: "Blue", image: "/blue.png", colorClass: "bg-blue-900" },
     { name: "Orange", image: "/orange.png", colorClass: "bg-orange-500" },
     { name: "White", image: "/white.png", colorClass: "bg-slate-100" },
-    { name: "Black", image: "/black.png", colorClass: "bg-black" },
   ];
 
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
