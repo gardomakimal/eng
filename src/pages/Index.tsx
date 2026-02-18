@@ -36,9 +36,9 @@ const Index: React.FC = () => {
   const [showLocker, setShowLocker] = useState<boolean>(false);
 
   const colorOptions = [
-    { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
-    { name: "Green", image: "/green.png", colorClass: "bg-teal-500" },
-    { name: "Pink", image: "/pink.png", colorClass: "bg-pink-400" },
+    { name: "Blue", image: "/blue.png", colorClass: "bg-blue-500" },
+    { name: "Orange", image: "/orange.png", colorClass: "bg-orange-500" },
+    { name: "White", image: "/white.png", colorClass: "bg-slate-100" },
   ];
 
   const [selectedColor, setSelectedColor] = useState(colorOptions[0]);
