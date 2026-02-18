@@ -37,7 +37,6 @@ const Locker = ({ onClose }) => {
               Hard: "bg-[#ee5253]"
             };
 
-            // Rating logic: 1st=5, 2nd=4, 3rd=3
             const ratings = [5, 4, 3];
 
             return {
@@ -130,8 +129,8 @@ const Locker = ({ onClose }) => {
                     rel="noopener noreferrer"
                     className="group relative flex items-start gap-4 p-4 transition-all border-2 border-slate-200 bg-slate-50/50 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50 overflow-hidden"
                   >
-                    {/* Difficulty Badge */}
-                    <div className={`absolute top-0 right-0 px-5 py-1.5 rounded-bl-2xl text-[11px] font-black text-white shadow-sm z-10 tracking-wide ${offer.badgeColor}`}>
+                    {/* Difficulty Badge - Smaller version */}
+                    <div className={`absolute top-0 right-0 px-3 py-1 rounded-bl-xl text-[9px] font-black text-white shadow-sm z-10 tracking-tight uppercase ${offer.badgeColor}`}>
                       {offer.difficulty}
                     </div>
 
@@ -153,7 +152,6 @@ const Locker = ({ onClose }) => {
                         )}
                       </div>
                       
-                      {/* Star Rating based on specific requirements */}
                       <div className="flex mt-2 gap-0.5">
                         {[...Array(5)].map((_, i) => (
                           <Star 
@@ -164,11 +162,11 @@ const Locker = ({ onClose }) => {
                       </div>
                     </div>
 
-                    <div className="flex-grow min-w-0 pr-12">
-                      <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight line-clamp-2">
+                    <div className="flex-grow min-w-0 pr-10">
+                      <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
                         {offer.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1 line-clamp-1">
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1">
                         {offer.description}
                       </p>
                     </div>
