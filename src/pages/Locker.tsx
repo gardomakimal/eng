@@ -44,8 +44,8 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
           const rawOffers = Array.isArray(data) ? data : (data.offers || []);
           
           const mappedOffers = rawOffers.map((offer: any) => {
-            // Try to find the image in various possible fields
-            let imgUrl = offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
+            // Prioritize network_icon as discovered, then fallback to other common fields
+            let imgUrl = offer.network_icon || offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
             
             // If it's a relative path, prepend the base URL
             if (imgUrl && !imgUrl.startsWith('http')) {
