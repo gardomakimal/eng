@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { MadeWithDyad } from "@/components/made-with-dyad";
-import { Loader2, Gift } from "lucide-react";
+import { Loader2, Gift, ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 import Locker from "./Locker";
 import RecentWinners from "@/components/RecentWinners";
