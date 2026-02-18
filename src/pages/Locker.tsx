@@ -5,10 +5,9 @@ import {
   ShieldCheck,
   Loader2,
   ChevronRight,
-  Lock,
-  CheckCircle2,
   Info,
-  X
+  X,
+  Zap
 } from "lucide-react";
 
 const USER_ID = "319070";
@@ -21,7 +20,7 @@ interface Offer {
   link: string;
   payout: string;
   image: string;
-  description?: string;
+  description: string;
 }
 
 interface LockerProps {
@@ -50,11 +49,11 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
             name: offer.anchor || offer.name || "Premium Offer",
             description: offer.conversion || offer.adcopy || "Complete this simple step to verify.",
             link: offer.url || offer.link,
-            payout: offer.payout || "Free",
-            image: offer.image || offer.icon || `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.anchor || 'O')}&background=0D8ABC&color=fff`
+            payout: offer.payout || "FREE",
+            image: offer.image || offer.icon || offer.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.anchor || 'O')}&background=0D8ABC&color=fff`
           }));
 
-          setOffers(mappedOffers.slice(0, 4));
+          setOffers(mappedOffers.slice(0, 5));
           setLoading(false);
         } catch (err) {
           setError("Error processing verification tasks.");
@@ -78,7 +77,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-md animate-in fade-in duration-300">
       <div className="relative w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-[2.5rem] animate-in zoom-in-95 duration-300 border border-slate-100">
         
         {/* Close Button */}
@@ -90,7 +89,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
         </button>
 
         {/* Header Section */}
-        <div className="relative p-8 pb-4 text-center">
+        <div className="relative p-8 pb-6 text-center">
           <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-blue-50 rounded-2xl">
             <ShieldCheck className="w-10 h-10 text-blue-600" />
           </div>
@@ -99,17 +98,17 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
             Human Verification
           </h1>
           <p className="mt-2 text-sm text-slate-500 font-medium px-4">
-            Complete one quick task below to verify your session and unlock your reward.
+            Complete one of the tasks below to verify your session and receive your reward.
           </p>
         </div>
 
         {/* Offers List */}
-        <div className="px-6 pb-8">
+        <div className="px-6 pb-8 max-h-[60vh] overflow-y-auto custom-scrollbar">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-12 space-y-3">
-              <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
-              <p className="text-[10px] font-bold tracking-widest uppercase text-slate-400">
-                Securing Connection...
+            <div className="flex flex-col items-center justify-center py-12 space-y-4">
+              <Loader2 className="w-10 h-10 text-blue-600 animate-spin" />
+              <p className="text-xs font-bold tracking-widest uppercase text-slate-400">
+                Loading secure tasks...
               </p>
             </div>
           ) : error ? (
@@ -132,10 +131,10 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                     href={offer.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 p-3.5 transition-all border border-slate-100 bg-slate-50/50 rounded-2xl hover:border-blue-400 hover:bg-white hover:shadow-lg hover:shadow-blue-50"
+                    className="group flex items-center gap-4 p-4 transition-all border border-slate-100 bg-slate-50/50 rounded-2xl hover:border-blue-400 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50"
                   >
                     <div className="relative flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl overflow-hidden bg-white border border-slate-100 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-slate-200 flex items-center justify-center shadow-sm">
                         <img 
                           src={offer.image} 
                           alt="" 
@@ -145,26 +144,29 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                           }}
                         />
                       </div>
+                      <div className="absolute -top-2 -right-2 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-white">
+                        {offer.payout}
+                      </div>
                     </div>
 
                     <div className="flex-grow min-w-0">
-                      <h3 className="text-sm font-bold text-slate-900 truncate group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-[15px] font-bold text-slate-900 truncate group-hover:text-blue-600 transition-colors">
                         {offer.name}
                       </h3>
-                      <p className="text-[11px] text-slate-500 line-clamp-1 font-medium">
+                      <p className="text-xs text-slate-500 line-clamp-2 font-medium leading-relaxed mt-0.5">
                         {offer.description}
                       </p>
                     </div>
 
-                    <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-white text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+                    <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full bg-white text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm border border-slate-100">
                       <ChevronRight className="w-5 h-5" />
                     </div>
                   </a>
                 ))
               ) : (
-                <div className="py-10 text-center rounded-3xl border-2 border-dashed border-slate-100">
+                <div className="py-12 text-center rounded-3xl border-2 border-dashed border-slate-100">
                   <p className="text-sm font-medium text-slate-400 px-6">
-                    No tasks available right now.
+                    No verification tasks available at this moment.
                   </p>
                 </div>
               )}
@@ -173,11 +175,19 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-8 py-4 bg-slate-50/80 border-t border-slate-100 flex items-center justify-center gap-2">
-          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-            Waiting for completion
-          </span>
+        <div className="px-8 py-5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+              Live Status: Waiting
+            </span>
+          </div>
+          <div className="flex items-center gap-1 text-blue-600">
+            <Zap className="w-3 h-3 fill-current" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">
+              Instant Unlock
+            </span>
+          </div>
         </div>
       </div>
     </div>
