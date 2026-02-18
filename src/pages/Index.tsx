@@ -13,6 +13,7 @@ import {
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
 import Header from "@/components/Header";
+import Locker from "./locker"; // ✅ ADDED
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -31,6 +32,8 @@ const Index: React.FC = () => {
     name: string;
     image: string;
   } | null>(null);
+
+  const [showLocker, setShowLocker] = useState<boolean>(false); // ✅ ADDED
 
   const colorOptions = [
     { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
@@ -168,20 +171,18 @@ const Index: React.FC = () => {
             />
           </div>
           <div className="flex justify-center items-center gap-4 mb-6">
-            <div className="flex gap-3">
-              {colorOptions.map((color) => (
-                <button
-                  key={color.name}
-                  onClick={() => setSelectedColor(color)}
-                  className={`w-8 h-8 rounded-full ${color.colorClass} border-2 border-white transition-all duration-200 ${
-                    selectedColor.name === color.name
-                      ? "ring-2 ring-offset-2 ring-blue-500"
-                      : ""
-                  }`}
-                  aria-label={`Choose ${color.name}`}
-                />
-              ))}
-            </div>
+            {colorOptions.map((color) => (
+              <button
+                key={color.name}
+                onClick={() => setSelectedColor(color)}
+                className={`w-8 h-8 rounded-full ${color.colorClass} border-2 border-white transition-all duration-200 ${
+                  selectedColor.name === color.name
+                    ? "ring-2 ring-offset-2 ring-blue-500"
+                    : ""
+                }`}
+                aria-label={`Choose ${color.name}`}
+              />
+            ))}
           </div>
           <Button
             onClick={handleAgreement}
@@ -202,12 +203,14 @@ const Index: React.FC = () => {
               Verification
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
-              Before we can provide you with the receipt to pick up your iPhone at a nearby store, you must pass the human verification test. In our last giveaway, we found that over half of the prizes went to bots. The test is simple it's like downloading a free game and playing it for a while
+              Before we can provide you with the receipt to pick up your iPhone
+              at a nearby store, you must pass the human verification test.
             </DialogDescription>
           </DialogHeader>
+
           <div className="flex flex-col gap-4 mt-6">
             <button
-              onClick={() => (window as any)._Ts()}
+              onClick={() => setShowLocker(true)} // ✅ REPLACED
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               I agree to verify
@@ -234,6 +237,10 @@ const Index: React.FC = () => {
           </Button>
         </DialogContent>
       </Dialog>
+
+      {/* ✅ LOCKER RENDER */}
+      {showLocker && <Locker onClose={() => setShowLocker(false)} />}
+
       <MadeWithDyad />
     </div>
   );
