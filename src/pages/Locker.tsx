@@ -8,72 +8,42 @@ const API_KEY = "3585ee70b06a7d74d5b8877f63d87db3";
 const BASE_URL = "https://d1y3y09sav47f5.cloudfront.net";
 const FEED_URL = `${BASE_URL}/public/offers/feed.php?user_id=${USER_ID}&api_key=${API_KEY}&s1=&s2=`;
 
-interface Offer {
-  name: string;
-  link: string;
-  image: string;
-  description: string;
-}
-
-interface LockerProps {
-  onClose: () => void;
-}
-
-const Locker: React.FC<LockerProps> = ({ onClose }) => {
-  const [offers, setOffers] = useState<Offer[]>([]);
+const Locker = ({ onClose }) => {
+  const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchOffersJSONP = () => {
       setLoading(true);
-      const callbackName =
-        "jsonp_callback_" + Math.round(100000 * Math.random());
-
+      const callbackName = "jsonp_callback_" + Math.round(100000 * Math.random());
       const script = document.createElement("script");
       script.src = `${FEED_URL}&callback=${callbackName}`;
       script.async = true;
 
-      (window as any)[callbackName] = (data: any) => {
+      window[callbackName] = (data) => {
         try {
           const rawOffers = Array.isArray(data) ? data : data.offers || [];
-
-          const mappedOffers = rawOffers.map((offer: any) => {
-            // Prioritize network_icon as discovered, then fallback to other common fields
-            let imgUrl =
-              offer.network_icon ||
-              offer.image ||
-              offer.icon ||
-              offer.picture ||
-              offer.image_url ||
-              offer.icon_url ||
-              "";
-
-            // If it's a relative path, prepend the base URL
+          const mappedOffers = rawOffers.map((offer) => {
+            let imgUrl = offer.network_icon || offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
             if (imgUrl && !imgUrl.startsWith("http")) {
               imgUrl = `${BASE_URL}${imgUrl.startsWith("/") ? "" : "/"}${imgUrl}`;
             }
-
             return {
               name: offer.anchor || offer.name || "Verification Task",
-              description:
-                offer.conversion ||
-                offer.adcopy ||
-                "Complete this step to verify.",
+              description: offer.conversion || offer.adcopy || "Complete this step to verify.",
               link: offer.url || offer.link,
               image: imgUrl,
             };
           });
 
-          // Limit to 3 offers
           setOffers(mappedOffers.slice(0, 3));
           setLoading(false);
         } catch (err) {
           setError("Error processing verification tasks.");
           setLoading(false);
         }
-
-        delete (window as any)[callbackName];
+        delete window[callbackName];
         if (document.body.contains(script)) document.body.removeChild(script);
       };
 
@@ -82,7 +52,6 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
         setLoading(false);
         if (document.body.contains(script)) document.body.removeChild(script);
       };
-
       document.body.appendChild(script);
     };
 
@@ -145,7 +114,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                     href={offer.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-4 p-4 transition-all border border-slate-100 bg-slate-50/50 rounded-2xl hover:border-blue-400 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50"
+                    className="group flex items-start gap-4 p-4 transition-all border-2 border-slate-200 bg-slate-50/50 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50"
                   >
                     <div className="flex-shrink-0 mt-1">
                       <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-slate-200 flex items-center justify-center shadow-sm">
@@ -155,8 +124,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                             alt=""
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                              (e.target as HTMLImageElement).src =
-                                `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.name)}&background=f1f5f9&color=64748b&size=128&bold=true`;
+                              e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.name)}&background=f1f5f9&color=64748b&size=128&bold=true`;
                             }}
                           />
                         ) : (
