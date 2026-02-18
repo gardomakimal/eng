@@ -60,7 +60,8 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
             };
           });
 
-          setOffers(mappedOffers.slice(0, 5));
+          // Limit to 3 offers
+          setOffers(mappedOffers.slice(0, 3));
           setLoading(false);
         } catch (err) {
           setError("Error processing verification tasks.");
