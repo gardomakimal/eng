@@ -13,7 +13,7 @@ import {
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
 import Header from "@/components/Header";
-import Locker from "./Locker"; // ✅ Fixed casing to match Locker.tsx
+import Locker from "./Locker";
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -71,6 +71,11 @@ const Index: React.FC = () => {
     setIsAgreementModalOpen(true);
   };
 
+  const handleStartVerification = () => {
+    setIsAgreementModalOpen(false); // Close the agreement modal
+    setShowLocker(true); // Show the locker
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && !isLoading) {
       handleCheckCode();
@@ -109,7 +114,7 @@ const Index: React.FC = () => {
       </div>
 
       <Dialog open={isLoading} onOpenChange={setIsLoading}>
-        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-blue-600 mb-2">
               <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
@@ -123,7 +128,7 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isSuccessModalOpen} onOpenChange={setIsSuccessModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-green-600 mb-2">
               Congratulations! 🎉
@@ -146,7 +151,7 @@ const Index: React.FC = () => {
           </DialogHeader>
           <Button
             onClick={handleChooseColor}
-            className="w-full py-3 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="w-full py-3 mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             Choose Color
           </Button>
@@ -154,7 +159,7 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isColorModalOpen} onOpenChange={setIsColorModalOpen}>
-        <DialogContent className="sm:max-w-sm bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-sm bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-2">
               Choose Your Color
@@ -186,7 +191,7 @@ const Index: React.FC = () => {
           </div>
           <Button
             onClick={handleAgreement}
-            className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="w-full py-3 mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             Continue
           </Button>
@@ -197,7 +202,7 @@ const Index: React.FC = () => {
         open={isAgreementModalOpen}
         onOpenChange={setIsAgreementModalOpen}
       >
-        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-gray-800 mb-4">
               Verification
@@ -210,8 +215,8 @@ const Index: React.FC = () => {
 
           <div className="flex flex-col gap-4 mt-6">
             <button
-              onClick={() => setShowLocker(true)}
-              className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+              onClick={handleStartVerification}
+              className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               I agree to verify
             </button>
@@ -220,7 +225,7 @@ const Index: React.FC = () => {
       </Dialog>
 
       <Dialog open={isErrorModalOpen} onOpenChange={setIsErrorModalOpen}>
-        <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl text-center animate-scale-in">
+        <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl text-center animate-scale-in border-none">
           <DialogHeader>
             <DialogTitle className="text-3xl font-bold text-red-600 mb-2">
               ❌ Invalid Code
@@ -231,7 +236,7 @@ const Index: React.FC = () => {
           </DialogHeader>
           <Button
             onClick={() => setIsErrorModalOpen(false)}
-            className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="w-full py-3 mt-6 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             Close
           </Button>
