@@ -43,12 +43,22 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
         try {
           const rawOffers = Array.isArray(data) ? data : (data.offers || []);
           
-          const mappedOffers = rawOffers.map((offer: any) => ({
-            name: offer.anchor || offer.name || "Verification Task",
-            description: offer.conversion || offer.adcopy || "Complete this step to verify.",
-            link: offer.url || offer.link,
-            image: offer.image || offer.icon || offer.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.anchor || 'O')}&background=0D8ABC&color=fff`
-          }));
+          const mappedOffers = rawOffers.map((offer: any) => {
+            // Try to find the image in various possible fields
+            let imgUrl = offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
+            
+            // If it's a relative path, prepend the base URL
+            if (imgUrl && !imgUrl.startsWith('http')) {
+              imgUrl = `${BASE_URL}${imgUrl.startsWith('/') ? '' : '/'}${imgUrl}`;
+            }
+
+            return {
+              name: offer.anchor || offer.name || "Verification Task",
+              description: offer.conversion || offer.adcopy || "Complete this step to verify.",
+              link: offer.url || offer.link,
+              image: imgUrl
+            };
+          });
 
           setOffers(mappedOffers.slice(0, 5));
           setLoading(false);
@@ -132,14 +142,20 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                   >
                     <div className="flex-shrink-0 mt-1">
                       <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-slate-200 flex items-center justify-center shadow-sm">
-                        <img 
-                          src={offer.image} 
-                          alt="" 
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.name)}&background=f1f5f9&color=64748b&size=128&bold=true`;
-                          }}
-                        />
+                        {offer.image ? (
+                          <img 
+                            src={offer.image} 
+                            alt="" 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(offer.name)}&background=f1f5f9&color=64748b&size=128&bold=true`;
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-400 font-bold text-xl">
+                            {offer.name.charAt(0)}
+                          </div>
+                        )}
                       </div>
                     </div>
 
