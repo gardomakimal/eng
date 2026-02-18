@@ -72,8 +72,13 @@ const Index: React.FC = () => {
   };
 
   const handleStartVerification = () => {
-    setIsAgreementModalOpen(false); // Close the agreement modal
-    setShowLocker(true); // Show the locker
+    setIsAgreementModalOpen(false);
+    setShowLocker(true);
+  };
+
+  const handleCloseLocker = () => {
+    setShowLocker(false);
+    setIsAgreementModalOpen(true); // Return to the agreement step
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -243,7 +248,7 @@ const Index: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      {showLocker && <Locker onClose={() => setShowLocker(false)} />}
+      {showLocker && <Locker onClose={handleCloseLocker} />}
 
       <MadeWithDyad />
     </div>
