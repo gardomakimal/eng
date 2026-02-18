@@ -36,15 +36,11 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
     const fetchOffers = async () => {
       try {
         setLoading(true);
-        // Using a proxy or direct fetch if CORS allows. 
-        // Note: Many offer walls require a proxy if called from the browser.
         const response = await fetch(FEED_URL);
         if (!response.ok) throw new Error("Failed to fetch offers");
         
         const data = await response.json();
         
-        // Map the data to our Offer interface. 
-        // Adjusting based on common offer feed structures.
         const mappedOffers = (data.offers || data || []).map((offer: any) => ({
           name: offer.name || offer.title || "Special Offer",
           link: offer.link || offer.url,
@@ -52,7 +48,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
           image: offer.image || offer.icon || "/placeholder.svg"
         }));
 
-        setOffers(mappedOffers.slice(0, 5)); // Show top 5 offers
+        setOffers(mappedOffers.slice(0, 5));
       } catch (err) {
         console.error("Error fetching offers:", err);
         setError("Could not load offers. Please try again later.");
@@ -66,7 +62,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl animate-scale-in">
+      <DialogContent className="sm:max-w-md bg-white p-6 rounded-3xl shadow-2xl animate-scale-in border-none">
         <DialogHeader className="text-center">
           <div className="mx-auto bg-blue-100 p-3 rounded-full w-fit mb-4">
             <ShieldCheck className="h-8 w-8 text-blue-600" />
@@ -88,7 +84,7 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
           ) : error ? (
             <div className="text-center py-8">
               <p className="text-red-500 mb-4">{error}</p>
-              <Button onClick={onClose} variant="outline">Close</Button>
+              <Button onClick={onClose} variant="outline" className="rounded-xl">Close</Button>
             </div>
           ) : (
             <div className="grid gap-3">
@@ -99,12 +95,12 @@ const Locker: React.FC<LockerProps> = ({ onClose }) => {
                     href={offer.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all group"
+                    className="flex items-center p-3 border border-gray-200 rounded-2xl hover:bg-blue-50 hover:border-blue-300 transition-all group"
                   >
                     <img 
                       src={offer.image} 
                       alt="" 
-                      className="w-12 h-12 rounded-md object-cover mr-4 bg-gray-100"
+                      className="w-12 h-12 rounded-xl object-cover mr-4 bg-gray-100"
                       onError={(e) => (e.currentTarget.src = "/placeholder.svg")}
                     />
                     <div className="flex-grow">
