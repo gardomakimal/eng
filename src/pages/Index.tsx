@@ -214,7 +214,7 @@ const Index: React.FC = () => {
             </DialogTitle>
             <DialogDescription className="text-gray-600 text-left">
               You must pass the age test to we can start the shipping process of
-              you iPhone (Age test is installing a free app or a game and play
+              your iPhone (Age test is installing a free app or a game and play
               it for some time) to prove you are old enough to not break the
               phone we give you.
             </DialogDescription>
