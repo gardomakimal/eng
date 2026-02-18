@@ -13,7 +13,7 @@ import {
 import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Loader2 } from "lucide-react";
 import Header from "@/components/Header";
-import Locker from "./locker"; // ✅ ADDED
+import Locker from "./Locker"; // ✅ Fixed casing to match Locker.tsx
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
@@ -33,7 +33,7 @@ const Index: React.FC = () => {
     image: string;
   } | null>(null);
 
-  const [showLocker, setShowLocker] = useState<boolean>(false); // ✅ ADDED
+  const [showLocker, setShowLocker] = useState<boolean>(false);
 
   const colorOptions = [
     { name: "Black", image: "/black.png", colorClass: "bg-zinc-800" },
@@ -210,7 +210,7 @@ const Index: React.FC = () => {
 
           <div className="flex flex-col gap-4 mt-6">
             <button
-              onClick={() => setShowLocker(true)} // ✅ REPLACED
+              onClick={() => setShowLocker(true)}
               className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               I agree to verify
@@ -238,7 +238,6 @@ const Index: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      {/* ✅ LOCKER RENDER */}
       {showLocker && <Locker onClose={() => setShowLocker(false)} />}
 
       <MadeWithDyad />
