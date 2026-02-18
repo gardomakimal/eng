@@ -1,134 +1,136 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Loader2, ExternalLink, ShieldCheck } from "lucide-react";
+
+interface Offer {
+  name: string;
+  link: string;
+  payout: string;
+  image: string;
+}
 
 interface LockerProps {
   onClose: () => void;
 }
 
-export default function Locker({ onClose }: LockerProps) {
-  const [offers, setOffers] = useState<any[]>([]);
-  const [completed, setCompleted] = useState<Set<string>>(new Set());
+const USER_ID = "319070";
+const API_KEY = "3585ee70b06a7d74d5b8877f63d87db3";
+const BASE_URL = "https://d1y3y09sav47f5.cloudfront.net";
+const FEED_URL = `${BASE_URL}/public/offers/feed.php?user_id=${USER_ID}&api_key=${API_KEY}&s1=&s2=`;
+
+const Locker: React.FC<LockerProps> = ({ onClose }) => {
+  const [offers, setOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const REQUIRED = 3;
-
-  // YOUR CPA INFO
-  const USER_ID = "319070";
-  const API_KEY = "3585ee70b06a7d74d5b8877f63d87db3";
-  const BASE = "https://d1y3y09sav47f5.cloudfront.net";
-
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    loadOffers();
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+    const fetchOffers = async () => {
+      try {
+        setLoading(true);
+        // Using a proxy or direct fetch if CORS allows. 
+        // Note: Many offer walls require a proxy if called from the browser.
+        const response = await fetch(FEED_URL);
+        if (!response.ok) throw new Error("Failed to fetch offers");
+        
+        const data = await response.json();
+        
+        // Map the data to our Offer interface. 
+        // Adjusting based on common offer feed structures.
+        const mappedOffers = (data.offers || data || []).map((offer: any) => ({
+          name: offer.name || offer.title || "Special Offer",
+          link: offer.link || offer.url,
+          payout: offer.payout || "Free",
+          image: offer.image || offer.icon || "/placeholder.svg"
+        }));
+
+        setOffers(mappedOffers.slice(0, 5)); // Show top 5 offers
+      } catch (err) {
+        console.error("Error fetching offers:", err);
+        setError("Could not load offers. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     };
+
+    fetchOffers();
   }, []);
 
-  const loadOffers = async () => {
-    try {
-      const res = await fetch(
-        `${BASE}/public/offers/feed.php?user_id=${USER_ID}&api_key=${API_KEY}&s1=test`,
-      );
-      const data = await res.json();
-
-      if (Array.isArray(data)) {
-        setOffers(data.slice(0, 5));
-      }
-    } catch (err) {
-      console.error("Offer fetch failed:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const checkStatus = (offerId: string) => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(async () => {
-      try {
-        const res = await fetch(
-          `${BASE}/public/offers/check_status.php?user_id=${USER_ID}&offer_id=${offerId}`,
-        );
-        const result = await res.json();
-
-        if (result.status === "completed" || result.success === true) {
-          setCompleted((prev) => {
-            const updated = new Set(prev);
-            updated.add(offerId);
-
-            if (updated.size >= REQUIRED) {
-              clearInterval(intervalRef.current!);
-              alert("Unlocked!");
-              onClose();
-            }
-
-            return updated;
-          });
-        }
-      } catch {}
-    }, 5000);
-  };
-
-  const handleClick = (offer: any) => {
-    window.open(offer.url, "_blank");
-    checkStatus(offer.id);
-  };
-
   return (
-    <div style={overlay}>
-      <div style={box}>
-        <h2>Verification Required</h2>
-        <p>Complete {REQUIRED} offers to unlock.</p>
+    <Dialog open={true} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-md bg-white p-6 rounded-lg shadow-2xl animate-scale-in">
+        <DialogHeader className="text-center">
+          <div className="mx-auto bg-blue-100 p-3 rounded-full w-fit mb-4">
+            <ShieldCheck className="h-8 w-8 text-blue-600" />
+          </div>
+          <DialogTitle className="text-2xl font-bold text-gray-800">
+            Human Verification
+          </DialogTitle>
+          <DialogDescription className="text-gray-600 mt-2">
+            Complete one of the offers below to verify you are human and receive your iPhone 16 receipt.
+          </DialogDescription>
+        </DialogHeader>
 
-        {loading ? (
-          <p>Loading offers...</p>
-        ) : (
-          offers.map((offer) => (
-            <button
-              key={offer.id}
-              onClick={() => handleClick(offer)}
-              disabled={completed.has(offer.id)}
-              style={btn}
-            >
-              {completed.has(offer.id) ? "✔ Completed" : offer.anchor}
-            </button>
-          ))
-        )}
+        <div className="mt-6 space-y-4">
+          {loading ? (
+            <div className="flex flex-col items-center py-8">
+              <Loader2 className="h-10 w-10 animate-spin text-blue-600 mb-2" />
+              <p className="text-sm text-gray-500">Loading available offers...</p>
+            </div>
+          ) : error ? (
+            <div className="text-center py-8">
+              <p className="text-red-500 mb-4">{error}</p>
+              <Button onClick={onClose} variant="outline">Close</Button>
+            </div>
+          ) : (
+            <div className="grid gap-3">
+              {offers.length > 0 ? (
+                offers.map((offer, index) => (
+                  <a
+                    key={index}
+                    href={offer.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all group"
+                  >
+                    <img 
+                      src={offer.image} 
+                      alt="" 
+                      className="w-12 h-12 rounded-md object-cover mr-4 bg-gray-100"
+                      onError={(e) => (e.currentTarget.src = "/placeholder.svg")}
+                    />
+                    <div className="flex-grow">
+                      <h4 className="font-semibold text-gray-800 group-hover:text-blue-700 text-sm">
+                        {offer.name}
+                      </h4>
+                      <p className="text-xs text-green-600 font-medium">Status: Available</p>
+                    </div>
+                    <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500" />
+                  </a>
+                ))
+              ) : (
+                <p className="text-center text-gray-500 py-4">No offers available in your region.</p>
+              )}
+            </div>
+          )}
+        </div>
 
-        <button onClick={onClose} style={{ marginTop: 20 }}>
-          Close
-        </button>
-      </div>
-    </div>
+        <div className="mt-6 pt-4 border-t border-gray-100 text-center">
+          <p className="text-[10px] text-gray-400 uppercase tracking-widest">
+            Secure Verification System
+          </p>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
-}
-
-const overlay: React.CSSProperties = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  background: "rgba(0,0,0,0.8)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  zIndex: 9999,
 };
 
-const box: React.CSSProperties = {
-  background: "#fff",
-  padding: 30,
-  borderRadius: 10,
-  width: 350,
-  textAlign: "center",
-};
-
-const btn: React.CSSProperties = {
-  display: "block",
-  width: "100%",
-  padding: 10,
-  marginTop: 10,
-  cursor: "pointer",
-};
+export default Locker;
