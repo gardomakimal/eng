@@ -17,7 +17,7 @@ import Locker from "./Locker";
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
-  "0000": { name: "iPhone 16 Pro / Pro Max", image: "/iphones.png" },
+  "0000": { name: "iPhone 17 Pro Max", image: "/iphones.png" },
 };
 
 const Index: React.FC = () => {
@@ -146,7 +146,7 @@ const Index: React.FC = () => {
                   className="mx-auto h-45 w-45 object-contain mb-4"
                 />
                 <p className="text-2xl font-semibold text-gray-800">
-                  You have won an iPhone 16
+                  You have won an iPhone 17 Pro Max
                 </p>
               </div>
             )}
@@ -170,7 +170,7 @@ const Index: React.FC = () => {
               Choose Your Color
             </DialogTitle>
             <DialogDescription className="text-gray-600">
-              Select your preferred color for your iPhone 16.
+              Select your preferred color for your iPhone 17 Pro Max.
             </DialogDescription>
           </DialogHeader>
           <div className="flex justify-center my-6">
