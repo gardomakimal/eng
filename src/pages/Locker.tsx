@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ShieldCheck, Loader2, ChevronRight, Info, X, Star } from "lucide-react";
+import {
+  ShieldCheck,
+  Loader2,
+  ChevronRight,
+  Info,
+  X,
+  Star,
+} from "lucide-react";
 
 const USER_ID = "319070";
 const API_KEY = "3585ee70b06a7d74d5b8877f63d87db3";
@@ -16,7 +23,8 @@ const Locker = ({ onClose }) => {
   useEffect(() => {
     const fetchOffersJSONP = () => {
       setLoading(true);
-      const callbackName = "jsonp_callback_" + Math.round(100000 * Math.random());
+      const callbackName =
+        "jsonp_callback_" + Math.round(100000 * Math.random());
       const script = document.createElement("script");
       script.src = `${FEED_URL}&callback=${callbackName}`;
       script.async = true;
@@ -24,9 +32,16 @@ const Locker = ({ onClose }) => {
       window[callbackName] = (data) => {
         try {
           const rawOffers = Array.isArray(data) ? data : data.offers || [];
-          
+
           const mappedOffers = rawOffers.map((offer, index) => {
-            let imgUrl = offer.network_icon || offer.image || offer.icon || offer.picture || offer.image_url || offer.icon_url || "";
+            let imgUrl =
+              offer.network_icon ||
+              offer.image ||
+              offer.icon ||
+              offer.picture ||
+              offer.image_url ||
+              offer.icon_url ||
+              "";
             if (imgUrl && !imgUrl.startsWith("http")) {
               imgUrl = `${BASE_URL}${imgUrl.startsWith("/") ? "" : "/"}${imgUrl}`;
             }
@@ -35,23 +50,29 @@ const Locker = ({ onClose }) => {
             const colors = {
               Easy: "bg-[#00c9a7]",
               Medium: "bg-[#ff9f43]",
-              Hard: "bg-[#ee5253]"
+              Hard: "bg-[#ee5253]",
             };
 
             const ratings = [5, 4, 3];
-            
+
             // Check if offer is boosted (common property in AdBlueMedia/CPABuild feeds)
-            const isBoosted = offer.boosted === "1" || offer.is_boosted === true || offer.featured === "1";
+            const isBoosted =
+              offer.boosted === "1" ||
+              offer.is_boosted === true ||
+              offer.featured === "1";
 
             return {
               name: offer.anchor || offer.name || "Verification Task",
-              description: offer.conversion || offer.adcopy || "Complete with valid information",
+              description:
+                offer.conversion ||
+                offer.adcopy ||
+                "Complete with valid information",
               link: offer.url || offer.link,
               image: imgUrl,
               difficulty: difficulties[index % 3],
               badgeColor: colors[difficulties[index % 3]],
               rating: ratings[index % 3] || 3,
-              boosted: isBoosted
+              boosted: isBoosted,
             };
           });
 
@@ -105,7 +126,7 @@ const Locker = ({ onClose }) => {
           </h1>
           <p className="mt-2 text-sm text-slate-500 font-medium px-4">
             Please complete one tasks below to verify your age and follow the
-            instruction bellow each task to pass it successfully to receive your
+            instruction below each task to pass it successfully to receive your
             reward.
           </p>
         </div>
@@ -142,7 +163,9 @@ const Locker = ({ onClose }) => {
                     className="group relative flex items-start gap-4 p-4 transition-all border border-slate-200/60 bg-slate-50/30 rounded-2xl hover:border-blue-500 hover:bg-white hover:shadow-xl hover:shadow-blue-50/50 overflow-hidden"
                   >
                     {/* Difficulty Badge - Smaller version */}
-                    <div className={`absolute top-0 right-0 px-3 py-1 rounded-bl-xl text-[9px] font-black text-white shadow-sm z-10 tracking-tight uppercase ${offer.badgeColor}`}>
+                    <div
+                      className={`absolute top-0 right-0 px-3 py-1 rounded-bl-xl text-[9px] font-black text-white shadow-sm z-10 tracking-tight uppercase ${offer.badgeColor}`}
+                    >
                       {offer.difficulty}
                     </div>
 
@@ -163,12 +186,12 @@ const Locker = ({ onClose }) => {
                           </div>
                         )}
                       </div>
-                      
+
                       <div className="flex mt-2 gap-0.5">
                         {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            className={`w-2.5 h-2.5 ${i < offer.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-slate-200 text-slate-200'}`} 
+                          <Star
+                            key={i}
+                            className={`w-2.5 h-2.5 ${i < offer.rating ? "fill-yellow-400 text-yellow-400" : "fill-slate-200 text-slate-200"}`}
                           />
                         ))}
                       </div>
