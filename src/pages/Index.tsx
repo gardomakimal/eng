@@ -17,7 +17,7 @@ import Locker from "./Locker";
 
 // Define prize data
 const prizeData: { [key: string]: { name: string; image: string } } = {
-  "0000": { name: "iPhone 17 Pro Max", image: "/iphones.png" },
+  "101200": { name: "iPhone 17 Pro Max", image: "/iphones.png" },
 };
 
 const Index: React.FC = () => {
